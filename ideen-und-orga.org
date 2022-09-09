@@ -1,0 +1,130 @@
+#+title: Ideen und Orga
+#+author: Kaan Sahin
+
+* Zeitlicher Ablauf
+
+- 30-35 min Talk, 10-15 min Discussion
+- Uhrzeit: ?
+
+* Talk
+
+* Struktur
+
+1. Einführung Clojure
+2. Clojures Vorzüge
+3. Interop
+4. Integration von Clojure in bestehendem Java-Projekt
+5. Fallbeispiel: EQUALS, Ersetze Java durch Scala
+6. Take-Home-Message
+   
+** 1. Einführung Clojure
+
+- "Hauptmerkmale"
+- Clojure-Syntax / Lisp
+
+** 2. Clojures Vorzüge
+
+- functional first
+- unmutable first
+- Simple Syntax
+
+** 3. Interop
+
+*** Clojure benutzt Java
+
+*** Java benutzt Clojure
+** 4. Integration von Clojure in bestehendem Java-Projekt
+** 5. Fallbeispiel: EQUALS, Ersetze Java durch Scala
+** 6. Take-Home-Message
+
+1. Für die JVM gibt es viele tolle Sprachen
+2. Integration von Clojure [andere S] in Java ist einfach
+3. Clojure lernen ist einfach
+
+
+* Vorbereitungen
+
+* Snippets/Ideen/Todos
+
+- [ ] Mike anhauen
+  - DDD
+  - Immutability
+  - Value Objects
+  - Java holt auf, aber immer noch scheiße, keine Literale, keine Immutable
+    Datenstrukturen
+- Stuart Halloway https://youtu.be/bvI1BNgGp0k
+- Solving Problems the Clojure Way https://youtu.be/vK1DazRK_a0
+  - 04:20 Clojure is functional, is data-driven
+  - 39:30 Refactor OO code to functional code
+  - 53:20 pure functions!
+  - 1:01:00 why is data > code
+- Clojure for Java Developers, Jan Kronquist https://youtu.be/cY9VPWckb5o
+  - war nicht gut der Talk
+  - "Dynamic typing and performance" -- Type Hints, good enough, often better
+    than java
+    - Clojure makes dynamic typing ok:
+      - REPL
+      - immutable data structures
+      - pure functions
+      - (automated) tests
+    - studies:
+      - stefan hanenberg & lutz prechelt
+        - dynamic is more productive
+        - no difference in reliability
+      - robert smallshire - "only 2 % defects are type errors (Github search)"
+  - State and Concurrency in Clojure (atom swap! ref dosync alter) vs Java
+    (synchronized ReadWriteLock) https://www.youtube.com/watch?v=b6LHzZogIbA
+    - Gutes Video
+    - für mich, ohne Concurrency-Erfahrung, zu advanced für den Vortrag, schätze
+      ich
+    - kenne mich mit Java "synchronized", "ReadWriteLock" gar nicht aus
+  - Clojure in a nutshell by James Trunk https://www.youtube.com/watch?v=C-kF25fWTO8
+    - 6:50 JSON taken the world communicating data, clojure data str json with
+      superpowers
+    - 7:50 syntax /lang is constistence in order of precence, no BOOK
+    - 10:00 clojure data structure immutable, --- difference to other lang: it
+      did it from the beginning!
+    - 12:30 Clojure is data-oriented!
+    - WATCH
+
+- ggf noch schauen:
+  - Persistent Data Structures and Managed References - Rich Hickey
+    - https://www.youtube.com/watch?v=toD45DtVCFM
+    - auch um : refs atoms, agents
+      
+
+** Interop
+
+*** IntelliJ
+
+funktioniert bisher nicht
+
+- neues Java Projekt
+- Clojure Projekt
+  #+begin_src clojure
+  (ns useclojure.core
+    (:gen-class))
+  #+end_src
+- kompiliere Clojure Projekt zu jar-Datei
+  - lein jar
+
+*** Command-Line
+
+- =Main.java= Datei erstellen
+- im selben Verzeichnis =lein new app myapp=
+- In =Main.java= Datei CLJ-Datei importieren:
+  #+begin_src java
+  import clj.core;
+  #+end_src
+- Und =-main=  Funktion von CLJ-Datei aufrufen:
+  #+begin_src java
+  String[] var =  {"hello world!","other","stuff"};
+
+  clj.core.main(var);
+  #+end_src
+- In CLJ-Rootverzeichnis =lein uberjar= ausführen
+- In Rootverzeichnis
+  #+begin_src bash
+  java -cp ".:clj/target/uberjar/clj-0.1.0-SNAPSHOT-standalone.jar" Main.java
+  #+end_src
+  ausführen

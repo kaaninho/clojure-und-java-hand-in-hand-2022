@@ -1,0 +1,403 @@
+#+title: Clojure und Java – Hand in Hand!
+#+author: Kaan Sahin, Active Group GmbH
+#+REVEAL_PLUGINS: (notes)
+#+REVEAL_THEME: active
+#+REVEAL_ROOT: file:///home/kaan/tmp/reveal.js
+#+REVEAL_HLEVEL: 100
+#+REVEAL_TRANS: none
+#+OPTIONS: num:nil toc:nil reveal-center:f reveal_slide_number:t
+#+MACRO: newline   src_emacs-lisp[:results raw]{"\n "}
+#+MACRO: TIKZ-IMG #+HEADER: :exports results :file $1 :imagemagick yes {{{newline}}} #+HEADER: :results raw {{{newline}}} #+HEADER: :headers '("\usepackage{tikz}") {{{newline}}} #+HEADER: :fit yes :imoutoptions -geometry $2 :iminoptions -density 600
+#+REVEAL_TITLE_SLIDE: %d
+#+REVEAL_TITLE_SLIDE_BACKGROUND: file:///home/kaan/active-group/vortraege/2022-09-15_Clojure und Java Hand in Hand/slides/title-slide.png
+
+* Clojure und Java – Hand in Hand!
+
+- Clojure 101
+- 
+
+
+* Clojure
+
+- Lisp-Dialekt
+- kompiliert zu JVM-Bytecode
+- unveränderliche Daten
+- ermutigt funktionale Programmierung
+- Interop mit Java
+- besonderes Augenmerk auf Nebenläufigkeit
+
+* Clojure
+
+- *Lisp-Dialekt*
+- kompiliert zu JVM-Bytecode
+- unveränderliche Daten
+- ermutigt funktionale Programmierung
+- Interop mit Java
+- besonderes Augenmerk auf Nebenläufigkeit
+
+
+#+BEGIN_NOTES
+- JVM: etablierte, anerkannte Umgebung
+- funktional: immutable data & first-class functions
+- Weil Lisp-Dialekt: Programmcode ist dem AST ähnlich
+#+END_NOTES
+
+* Clojure -- Lisp-Dialekt
+
+*Syntax*
+
+zwei Arten von Ausdrücken
+- Atomare Ausdrücke
+  #+begin_src clojure
+  17                          ; Zahl
+  "Hallo"                     ; Zeichenkette
+  false                       ; Wahrheitswert                
+  symbol                      ; Symbol
+
+  :read-only?                 ; Keywords
+  #+end_src
+- zusammengesetzte Daten: =(or false (> 2 1))=
+
+#+BEGIN_NOTES
+- Ausdrücke werden evaluiert / ausgewertet zu Werten
+- Ein Ausdruck mit Klammern ist meistens ein Funktionsaufruf
+- Heute wird es aber oft was anderes sein, ein Makro oder eine special form
+- In Clojure gibt es noch drei weitere Arten von collection types: Vektoren,
+  Maps und Mengen
+#+END_NOTES
+
+* Clojure -- Lisp-Dialekt
+
+*Syntax*
+
+eingebaute Datenstrukturen
+
+#+begin_src clojure
+[1 2 3 4 5]                   ; Vektor
+{:name "Kaan" :loc-per-day 5} ; Map
+#{:rot :grün :blau}           ; Menge
+#+end_src
+
+#+BEGIN_NOTES
+- Ein Ausdruck mit Klammern ist meistens ein
+  Funktionsaufruf
+- In Clojure gibt es noch drei weitere eingebaute
+  Datenstrukturen, für die es spezielle Syntax
+   gibt: Vektoren, Maps und Mengen
+- Das Schöne daran ist, dass Clojure Daten visualisiert, man sieht, was man
+  vorliegen hat
+#+END_NOTES
+
+* Clojure -- Lisp-Dialekt
+
+*Syntax*
+
+#+begin_src clojure
+(def pi 3.14159)           ; Definition         
+
+
+
+
+
+
+
+#+end_src
+
+* Clojure -- Lisp-Dialekt
+
+*Syntax*
+
+#+begin_src clojure
+(def pi 3.14159)           ; Definition
+
+(defn umfang [radius]      ; Funktionsdefinition     
+  (* 2 pi radius))
+
+
+
+
+#+end_src
+
+* Clojure -- Lisp-Dialekt
+
+*Syntax*
+
+#+begin_src clojure
+(def pi 3.14159)           ; Definition
+
+(defn umfang [radius]      ; Funktionsdefinition     
+  (* 2 pi radius))
+
+
+repl> (umfang 4)
+=> 6.28318
+#+end_src
+
+* Clojure
+
+- Lisp-Dialekt
+- kompiliert zu JVM-Bytecode
+- *unveränderliche Daten*
+- ermutigt funktionale Programmierung
+- Interop mit Java
+- besonderes Augenmerk auf Nebenläufigkeit
+
+* Clojure -- Immutability
+
+eingebaute Datenstrukturen
+
+#+begin_src clojure
+[1 2 3 4 5]                   ; Vektor
+{:name "Kaan" :loc-per-day 5} ; Map
+#{:rot :grün :blau}           ; Menge
+#+end_src
+
+sind *unveränderlich*
+
+* Clojure -- Immutability
+
+eingebaute Funktionen
+
+#+begin_src clojure
+(def vektor [1 2 3 4 5])
+
+repl> (conj 6 vektor)
+=> [1 2 3 4 5]
+
+repl> vektor
+=> [1 2 3 4 5 6]
+#+end_src
+
+*verändern* Objekte *nicht*
+
+* Clojure -- Immutability
+
+eingebaute Datenstrukturen sind *unveränderlich*
+
+eingebaute Funktionen *verändern* Objekte *nicht* \\
+=> geben *neue* Objekte zurück
+
+* Clojure -- Immutability
+
+#+HTML: <div><div style="max-width:400px;padding-left:130px">
+file:images/effective-java.jpg
+#+HTML: </div></div>
+
+* Clojure -- Immutability
+
+#+HTML: <div><div style="max-width:400px;padding-left:130px">
+file:images/immutability.jpeg
+#+HTML: </div></div>
+
+
+* Clojure -- Immutability
+
+#+HTML: <div style="display:flex;flex-direction:row"><div style="max-width:400px;padding-left:130px;flex-direction:row">
+#+HTML: <img src="images/immutability.jpeg"></img>
+
+#+HTML:<div style="align:float-right">
+Don't provide any methods that modify the object's state
+
+Ensure that the class can't be extended
+
+Make all fields =final=
+
+Make all fields =private=
+
+Ensure exclusive access to any mutable components
+#+HTML: </div>
+
+#+HTML: </div></div>
+
+* Clojure -- Immutability
+
+weitere Vorteile
+
+- weniger Kopplung
+- keine versteckten Abhängigkeiten
+- Neenläufigkeit einfacher und besser handlebar
+
+=> *verbessert Architektur!*
+
+* Clojure -- Immutability
+
+eingebaute Datenstrukturen sind *unveränderlich*
+
+eingebaute Funktionen *verändern* Objekte *nicht* \\
+=> geben *neue* Objekte zurück
+
+\\
+
+Effizienz?
+
+* Clojure -- Immutability
+
+Effizienz?
+
+#+begin_src clojure
+["a" "b" "c" "d" "f" "g" "h"]
+#+end_src
+
+* Clojure -- Immutability
+
+Effizienz?
+
+#+begin_src clojure
+["a" "b" "c" "d" "f" "g" "h"]
+#+end_src
+
+
+#+HTML: <div><div style="max-width:400px;padding-left:130px">
+[[file:images/Purely_functional_tree_before.svg]]
+#+HTML: </div></div>
+
+#+HTML: <div style="font-size:10px">
+VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by sevela.p., CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=3594619
+#+HTML: </div>
+
+* Clojure -- Immutability
+
+Effizienz?
+
+#+begin_src clojure
+["a" "b" "c" "d" "e" "f" "g" "h"]
+#+end_src
+
+#+HTML: <div><div style="max-width:400px;padding-left:130px">
+[[file:images/Purely_functional_tree_after.svg]]
+#+HTML: </div></div>
+
+#+HTML: <div style="font-size:10px">
+VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by sevela.p., CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=3594620
+#+HTML: </div>
+
+* Clojure
+
+- Lisp-Dialekt
+- kompiliert zu JVM-Bytecode
+- unveränderliche Daten
+- *ermutigt funktionale Programmierung*
+- Interop mit Java
+- besonderes Augenmerk auf Nebenläufigkeit
+
+* Clojure -- funktionale Programmierung
+
+MIKE: DIESE FOLIE WEG
+- Anonyme Funktionen
+- Funktionen höherer Ordnung  
+
+* Clojure -- funktionale Programmierung
+
+MIKE: DIESE FOLIE WEG
+- Anonyme Funktionen
+  #+begin_src clojure
+  (fn [a b] (and (or a b) (not (and a b))))
+
+  #(str "Hallo " % "!")
+  #+end_src
+- Funktionen höherer Ordnung
+    
+* Clojure -- funktionale Programmierung
+
+MIKE: DIESE FOLIE WEG
+- Anonyme Funktionen
+  #+begin_src clojure
+  (fn [a b] (and (or a b) (not (and a b))))
+
+  #(str "Hallo " % "!")
+  #+end_src
+- Funktionen höherer Ordnung
+  - =map=, =filter=, =reduce=
+
+* Clojure -- funktionale Programmierung
+
+#+begin_src clojure
+(map #(+ 15 %) [1 2 3 4 5])
+
+
+#+end_src
+
+* Clojure -- funktionale Programmierung
+
+#+begin_src clojure
+(map #(+ 15 %) [1 2 3 4 5])
+
+=> [16 17 18 19 20]
+#+end_src
+
+* Clojure -- funktionale Programmierung
+
+#+begin_src clojure
+(filter (fn [[key val]] (> (:age val) 17))
+        {:max {:age 23 :address "Die Straße"}
+         :moritz {:age 15 :address "Die andere Straße"}})
+
+
+#+end_src
+
+* Clojure -- funktionale Programmierung
+
+#+begin_src clojure
+(filter (fn [[key val]] (> (:age val) 17))
+        {:max {:age 23 :address "Die Straße"}
+         :moritz {:age 15 :address "Die andere Straße"}})
+
+=> {:max {:age 23 :address "Die Straße"}}
+#+end_src
+
+* Clojure -- funktionale Programmierung
+
+#+begin_src clojure
+(reduce (fn [acc el]
+          (+ acc (:age (val el))))
+        0
+        {:max {:age 23 :address "Die Straße"}
+         :moritz {:age 15 :address "Die andere Straße"}})
+
+
+#+end_src
+
+* Clojure -- funktionale Programmierung
+
+#+begin_src clojure
+(reduce (fn [acc el]
+          (+ acc (:age (val el))))
+        0
+        {:max {:age 23 :address "Die Straße"}
+         :moritz {:age 15 :address "Die andere Straße"}})
+
+=> 38
+#+end_src
+
+* Clojure
+
+- Lisp-Dialekt
+- kompiliert zu JVM-Bytecode
+- unveränderliche Daten
+- ermutigt funktionale Programmierung
+- *Interop mit Java*
+- besonderes Augenmerk auf Nebenläufigkeit
+
+* Clojure -- Interop mit Java
+
+?!Live-Demo?!
+
+INTERFACE NOCH
+
+* Funktionale Softwarearchitektur
+
+- Onion-Architecture
+- Hexagonale Architektur
+
+* ?Event-Sourcing?
+
+Passt gut zu Immutability
+
+* Falls ich Plantuml benutze:
+
+# #+begin_src plantuml :file images/hello-uml.png
+# Bob -> Alice : Hello World!
+# #+end_src
+
+# #+RESULTS:
+# [[file:images/hello-uml.png]]

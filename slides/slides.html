@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Clojure und Java – Hand in Hand!</title>
+<meta name="author" content="Kaan Sahin, Active Group GmbH"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/kaan/tmp/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/kaan/tmp/reveal.js/css/theme/active.css" id="theme"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'file:///home/kaan/tmp/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="file:///home/kaan/active-group/vortraege/2022-09-15_Clojure und Java Hand in Hand/slides/title-slide.png">
+
+</section>
+
+<section>
+<section id="slide-org2f46181">
+<h2 id="org2f46181">Clojure und Java – Hand in Hand!</h2>
+<ul>
+<li>Clojure 101</li>
+<li></li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org7dd630a">
+<h2 id="org7dd630a">Clojure</h2>
+<ul>
+<li>Lisp-Dialekt</li>
+<li>kompiliert zu JVM-Bytecode</li>
+<li>unveränderliche ??Datenstrukturen??
+<ul>
+<li>Daten(-strukturen)?</li>
+<li>Daten?</li>
+
+</ul></li>
+<li>ermutigt funktionale Programmierung</li>
+<li>Interop mit Java</li>
+<li>besonderes Augenmerk auf Nebenläufigkeit</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org471ffc7">
+<h2 id="org471ffc7">Clojure</h2>
+<ul>
+<li><b>Lisp-Dialekt</b></li>
+<li>kompiliert zu JVM-Bytecode</li>
+<li>unveränderliche Datenstrukturen</li>
+<li>ermutigt funktionale Programmierung</li>
+<li>Interop mit Java</li>
+<li>besonderes Augenmerk auf Nebenläufigkeit</li>
+
+</ul>
+
+
+<aside class="notes">
+<ul>
+<li>JVM: etablierte, anerkannte Umgebung</li>
+<li>funktional: immutable data &amp; first-class functions</li>
+<li>Weil Lisp-Dialekt: Programmcode ist dem AST ähnlich</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org80214d0">
+<h2 id="org80214d0">Clojure &#x2013; Lisp-Dialekt</h2>
+<p>
+<b>Syntax</b>
+</p>
+
+<p>
+zwei Arten von Ausdrücken
+</p>
+<ul>
+<li><p>
+Atomare Ausdrücke
+</p>
+<div class="org-src-container">
+
+<pre class="src src-clojure">17                          <span style="color: #6b7678;">; Zahl</span>
+<span style="color: #ffed72;">"Hallo"</span>                     <span style="color: #6b7678;">; Zeichenkette</span>
+<span style="color: #baa0f8;">false</span>                       <span style="color: #6b7678;">; Wahrheitswert                </span>
+symbol                      <span style="color: #6b7678;">; Symbol</span>
+
+<span style="color: #baa0f8;">:read-only?</span>                 <span style="color: #6b7678;">; Keywords</span>
+</pre>
+</div></li>
+<li>Listen: <code>(or false (&gt; 2 1))</code></li>
+
+</ul>
+
+<aside class="notes">
+<ul>
+<li>Ausdrücke werden evaluiert / ausgewertet zu Werten</li>
+<li>Ein Ausdruck mit Klammern ist meistens ein Funktionsaufruf</li>
+<li>Heute wird es aber oft was anderes sein, ein Makro oder eine special form</li>
+<li>In Clojure gibt es noch drei weitere Arten von collection types: Vektoren,
+Maps und Mengen</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org46b878c">
+<h2 id="org46b878c">Clojure &#x2013; Lisp-Dialekt</h2>
+<p>
+<b>Syntax</b>
+</p>
+
+<p>
+eingebaute Datenstrukturen
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(1 2 3 4 5)                   <span style="color: #6b7678;">; Liste</span>
+[1 2 3 4 5]                   <span style="color: #6b7678;">; Vektor</span>
+{<span style="color: #baa0f8;">:name</span> <span style="color: #ffed72;">"Kaan"</span> <span style="color: #baa0f8;">:loc-per-day</span> 5} <span style="color: #6b7678;">; Map</span>
+#{<span style="color: #baa0f8;">:rot</span> <span style="color: #baa0f8;">:gr&#252;n</span> <span style="color: #baa0f8;">:blau</span>}           <span style="color: #6b7678;">; Menge</span>
+</pre>
+</div>
+
+<aside class="notes">
+<ul>
+<li>Ein Ausdruck mit Klammern ist meistens ein
+Funktionsaufruf</li>
+<li>In Clojure gibt es noch drei weitere eingebaute
+Datenstrukturen, für die es spezielle Syntax
+ gibt: Vektoren, Maps und Mengen</li>
+<li>Das Schöne daran ist, dass Clojure Daten visualisiert, man sieht, was man
+vorliegen hat</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org0bcc1d5">
+<h2 id="org0bcc1d5">Clojure &#x2013; Lisp-Dialekt</h2>
+<p>
+<b>Syntax</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #7cd5f1;">def</span> <span style="color: #f2fffc;">pi</span> 3.14159)           <span style="color: #6b7678;">; Definition         </span>
+
+
+
+
+
+
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org803853d">
+<h2 id="org803853d">Clojure &#x2013; Lisp-Dialekt</h2>
+<p>
+<b>Syntax</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #7cd5f1;">def</span> <span style="color: #f2fffc;">pi</span> 3.14159)           <span style="color: #6b7678;">; Definition</span>
+
+(<span style="color: #7cd5f1;">defn</span> <span style="color: #a2e57b;">umfang</span> [radius]      <span style="color: #6b7678;">; Funktionsdefinition     </span>
+  (* 2 pi radius))
+
+
+
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org2eff353">
+<h2 id="org2eff353">Clojure &#x2013; Lisp-Dialekt</h2>
+<p>
+<b>Syntax</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #7cd5f1;">def</span> <span style="color: #f2fffc;">pi</span> 3.14159)           <span style="color: #6b7678;">; Definition</span>
+
+(<span style="color: #7cd5f1;">defn</span> <span style="color: #a2e57b;">umfang</span> [radius]      <span style="color: #6b7678;">; Funktionsdefinition     </span>
+  (* 2 pi radius))
+
+
+repl&gt; (umfang 4)
+=&gt; 6.28318
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org251549a">
+<h2 id="org251549a">Clojure</h2>
+<ul>
+<li>Lisp-Dialekt</li>
+<li>kompiliert zu JVM-Bytecode</li>
+<li><b>unveränderliche Datenstrukturen</b> /Persistent data structures sagen?</li>
+<li>ermutigt funktionale Programmierung</li>
+<li>Interop mit Java</li>
+<li>besonderes Augenmerk auf Nebenläufigkeit</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd282b13">
+<h2 id="orgd282b13">Clojure &#x2013; Immutability</h2>
+<p>
+eingebaute Datenstrukturen
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(1 2 3 4 5)                   <span style="color: #6b7678;">; Liste</span>
+[1 2 3 4 5]                   <span style="color: #6b7678;">; Vektor</span>
+{<span style="color: #baa0f8;">:name</span> <span style="color: #ffed72;">"Kaan"</span> <span style="color: #baa0f8;">:loc-per-day</span> 5} <span style="color: #6b7678;">; Map</span>
+#{<span style="color: #baa0f8;">:rot</span> <span style="color: #baa0f8;">:gr&#252;n</span> <span style="color: #baa0f8;">:blau</span>}           <span style="color: #6b7678;">; Menge</span>
+</pre>
+</div>
+
+<p>
+sind <b>unveränderlich</b>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org8495d21">
+<h2 id="org8495d21">Clojure &#x2013; Immutability</h2>
+<p>
+eingebaute Funktionen
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #7cd5f1;">def</span> <span style="color: #f2fffc;">liste</span> (1 2 3 4 5))
+
+repl&gt; (cons 0 liste)
+=&gt; (0 1 2 3 4 5)
+
+repl&gt; liste
+=&gt; (1 2 3 4 5)
+</pre>
+</div>
+
+<p>
+<b>verändern</b> Objekte <b>nicht</b>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org666cbd5">
+<h2 id="org666cbd5">Clojure &#x2013; Immutability</h2>
+<p>
+eingebaute Datenstrukturen sind <b>unveränderlich</b>
+</p>
+
+<p>
+eingebaute Funktionen <b>verändern</b> Objekte <b>nicht</b> <br />
+==&gt; geben <b>neue</b> Objekte zurück
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org35362be">
+<h2 id="org35362be">Clojure &#x2013; Immutability</h2>
+<div><div style="max-width:400px;padding-left:130px">
+
+<div id="org78a1ffb" class="figure">
+<p><img src="images/effective-java.jpg" alt="effective-java.jpg" />
+</p>
+</div>
+</div></div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb1d845a">
+<h2 id="orgb1d845a">Clojure &#x2013; Immutability</h2>
+<div><div style="max-width:400px;padding-left:130px">
+
+<div id="org3180853" class="figure">
+<p><img src="images/immutability.jpeg" alt="immutability.jpeg" />
+</p>
+</div>
+</div></div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgbd305c6">
+<h2 id="orgbd305c6">Clojure &#x2013; Immutability</h2>
+<div style="display:flex;flex-direction:row"><div style="max-width:400px;padding-left:130px;flex-direction:row">
+<img src="images/immutability.jpeg"></img>
+
+<div style="align:float-right">
+<p>
+Don't provide any methods that modify the object's state
+</p>
+
+<p>
+Ensure that the class can't be extended
+</p>
+
+<p>
+Make all fields <code>final</code>
+</p>
+
+<p>
+Make all fields <code>private</code>
+</p>
+
+<p>
+Ensure exclusive access to any mutable components
+</p>
+</div>
+
+</div></div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd730273">
+<h2 id="orgd730273">Clojure &#x2013; Immutability</h2>
+<p>
+eingebaute Datenstrukturen sind <b>unveränderlich</b>
+</p>
+
+<p>
+eingebaute Funktionen <b>verändern</b> Objekte <b>nicht</b> <br />
+==&gt; geben <b>neue</b> Objekte zurück
+</p>
+
+<p>
+<br />
+</p>
+
+<p>
+Effizienz?
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc7d3a24">
+<h2 id="orgc7d3a24">Clojure &#x2013; Immutability</h2>
+<p>
+Effizienz?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">[<span style="color: #ffed72;">"a"</span> <span style="color: #ffed72;">"b"</span> <span style="color: #ffed72;">"c"</span> <span style="color: #ffed72;">"d"</span> <span style="color: #ffed72;">"f"</span> <span style="color: #ffed72;">"g"</span> <span style="color: #ffed72;">"h"</span>]
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd39305c">
+<h2 id="orgd39305c">Clojure &#x2013; Immutability</h2>
+<p>
+Effizienz?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">[<span style="color: #ffed72;">"a"</span> <span style="color: #ffed72;">"b"</span> <span style="color: #ffed72;">"c"</span> <span style="color: #ffed72;">"d"</span> <span style="color: #ffed72;">"f"</span> <span style="color: #ffed72;">"g"</span> <span style="color: #ffed72;">"h"</span>]
+</pre>
+</div>
+
+
+<div><div style="max-width:400px;padding-left:130px">
+
+<div id="orgbc5ec81" class="figure">
+<p><object type="image/svg+xml" data="images/Purely_functional_tree_before.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</div></div>
+
+<div style="font-size:10px">
+<p>
+VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by sevela.p., CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=3594619">https://commons.wikimedia.org/w/index.php?curid=3594619</a>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orga1ece4c">
+<h2 id="orga1ece4c">Clojure &#x2013; Immutability</h2>
+<p>
+Effizienz?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">[<span style="color: #ffed72;">"a"</span> <span style="color: #ffed72;">"b"</span> <span style="color: #ffed72;">"c"</span> <span style="color: #ffed72;">"d"</span> <span style="color: #ffed72;">"e"</span> <span style="color: #ffed72;">"f"</span> <span style="color: #ffed72;">"g"</span> <span style="color: #ffed72;">"h"</span>]
+</pre>
+</div>
+
+<div><div style="max-width:400px;padding-left:130px">
+
+<div id="org37f08de" class="figure">
+<p><object type="image/svg+xml" data="images/Purely_functional_tree_after.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</div></div>
+
+<div style="font-size:10px">
+<p>
+VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by sevela.p., CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=3594620">https://commons.wikimedia.org/w/index.php?curid=3594620</a>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org4fbc41f">
+<h2 id="org4fbc41f">Clojure</h2>
+<ul>
+<li>Lisp-Dialekt</li>
+<li>kompiliert zu JVM-Bytecode</li>
+<li>unveränderliche Datenstrukturen</li>
+<li><b>ermutigt funktionale Programmierung</b></li>
+<li>Interop mit Java</li>
+<li>besonderes Augenmerk auf Nebenläufigkeit</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org49de40f">
+<h2 id="org49de40f">Clojure &#x2013; funktionale Programmierung</h2>
+<ul>
+<li>Anonyme Funktionen</li>
+<li>Funktionen höherer Ordnung</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org5217491">
+<h2 id="org5217491">Clojure &#x2013; funktionale Programmierung</h2>
+<ul>
+<li><p>
+Anonyme Funktionen
+</p>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #7cd5f1;">fn</span> [a b] (<span style="color: #7cd5f1;">and</span> (<span style="color: #7cd5f1;">or</span> a b) (not (<span style="color: #7cd5f1;">and</span> a b))))
+
+#(str <span style="color: #ffed72;">"Hallo "</span> <span style="color: #f2fffc;">%</span> <span style="color: #ffed72;">"!"</span>)
+</pre>
+</div></li>
+<li>Funktionen höherer Ordnung</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org13ab671">
+<h2 id="org13ab671">Clojure &#x2013; funktionale Programmierung</h2>
+<ul>
+<li><p>
+Anonyme Funktionen
+</p>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #7cd5f1;">fn</span> [a b] (<span style="color: #7cd5f1;">and</span> (<span style="color: #7cd5f1;">or</span> a b) (not (<span style="color: #7cd5f1;">and</span> a b))))
+
+#(str <span style="color: #ffed72;">"Hallo "</span> <span style="color: #f2fffc;">%</span> <span style="color: #ffed72;">"!"</span>)
+</pre>
+</div></li>
+<li>Funktionen höherer Ordnung
+<ul>
+<li><code>map</code>, <code>filter</code>, <code>reduce</code></li>
+
+</ul></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org1dc67b9">
+<h2 id="org1dc67b9">Clojure &#x2013; funktionale Programmierung</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(map #(+ 15 <span style="color: #f2fffc;">%</span>) [1 2 3 4 5])
+
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd7c6e1c">
+<h2 id="orgd7c6e1c">Clojure &#x2013; funktionale Programmierung</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(map #(+ 15 <span style="color: #f2fffc;">%</span>) [1 2 3 4 5])
+
+=&gt; [16 17 18 19 20]
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org8aa8de7">
+<h2 id="org8aa8de7">Clojure &#x2013; funktionale Programmierung</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(filter (<span style="color: #7cd5f1;">fn</span> [[key val]] (&gt; (<span style="color: #baa0f8;">:age</span> val) 17))
+        {<span style="color: #baa0f8;">:max</span> {<span style="color: #baa0f8;">:age</span> 23 <span style="color: #baa0f8;">:address</span> <span style="color: #ffed72;">"Die Stra&#223;e"</span>}
+         <span style="color: #baa0f8;">:moritz</span> {<span style="color: #baa0f8;">:age</span> 15 <span style="color: #baa0f8;">:address</span> <span style="color: #ffed72;">"Die andere Stra&#223;e"</span>}})
+
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org3199dd8">
+<h2 id="org3199dd8">Clojure &#x2013; funktionale Programmierung</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(filter (<span style="color: #7cd5f1;">fn</span> [[key val]] (&gt; (<span style="color: #baa0f8;">:age</span> val) 17))
+        {<span style="color: #baa0f8;">:max</span> {<span style="color: #baa0f8;">:age</span> 23 <span style="color: #baa0f8;">:address</span> <span style="color: #ffed72;">"Die Stra&#223;e"</span>}
+         <span style="color: #baa0f8;">:moritz</span> {<span style="color: #baa0f8;">:age</span> 15 <span style="color: #baa0f8;">:address</span> <span style="color: #ffed72;">"Die andere Stra&#223;e"</span>}})
+
+=&gt; {<span style="color: #baa0f8;">:max</span> {<span style="color: #baa0f8;">:age</span> 23 <span style="color: #baa0f8;">:address</span> <span style="color: #ffed72;">"Die Stra&#223;e"</span>}}
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org3d8d554">
+<h2 id="org3d8d554">Clojure &#x2013; funktionale Programmierung</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(reduce (<span style="color: #7cd5f1;">fn</span> [acc el]
+          (+ acc (<span style="color: #baa0f8;">:age</span> (val el))))
+        0
+        {<span style="color: #baa0f8;">:max</span> {<span style="color: #baa0f8;">:age</span> 23 <span style="color: #baa0f8;">:address</span> <span style="color: #ffed72;">"Die Stra&#223;e"</span>}
+         <span style="color: #baa0f8;">:moritz</span> {<span style="color: #baa0f8;">:age</span> 15 <span style="color: #baa0f8;">:address</span> <span style="color: #ffed72;">"Die andere Stra&#223;e"</span>}})
+
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbcfd483">
+<h2 id="orgbcfd483">Clojure &#x2013; funktionale Programmierung</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(reduce (<span style="color: #7cd5f1;">fn</span> [acc el]
+          (+ acc (<span style="color: #baa0f8;">:age</span> (val el))))
+        0
+        {<span style="color: #baa0f8;">:max</span> {<span style="color: #baa0f8;">:age</span> 23 <span style="color: #baa0f8;">:address</span> <span style="color: #ffed72;">"Die Stra&#223;e"</span>}
+         <span style="color: #baa0f8;">:moritz</span> {<span style="color: #baa0f8;">:age</span> 15 <span style="color: #baa0f8;">:address</span> <span style="color: #ffed72;">"Die andere Stra&#223;e"</span>}})
+
+=&gt; 38
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc9ece2f">
+<h2 id="orgc9ece2f">Clojure</h2>
+<ul>
+<li>Lisp-Dialekt</li>
+<li>kompiliert zu JVM-Bytecode</li>
+<li>unveränderliche Datenstrukturen</li>
+<li>ermutigt funktionale Programmierung</li>
+<li><b>Interop mit Java</b></li>
+<li>besonderes Augenmerk auf Nebenläufigkeit</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org1e4dc43">
+<h2 id="org1e4dc43">Clojure &#x2013; Interop mit Java</h2>
+<p>
+Live-Demo
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org61424b4">
+<h2 id="org61424b4">Falls ich Plantuml benutze:</h2>
+</section>
+</section>
+</div>
+</div>
+<script src="file:///home/kaan/tmp/reveal.js/js/reveal.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 't',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'none', // see README of reveal.js for options
+transitionSpeed: 'default',
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+ { src: 'file:///home/kaan/tmp/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+</script>
+</body>
+</html>
