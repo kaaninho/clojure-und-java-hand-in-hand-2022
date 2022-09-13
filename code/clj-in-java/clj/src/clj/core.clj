@@ -10,8 +10,3 @@
 
 ;; `transform-string` Java-konform und bekannt machen
 (def -transform transform-string)
-
-(defn -main
-  "Main entry point"
-  [& args]
-  (println (transform-string (first args))))

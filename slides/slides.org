@@ -14,8 +14,8 @@
 * Clojure und Java – Hand in Hand!
 
 - Clojure 101
-- 
-
+- Interop Java und Clojure
+- Clojure in der Praxis
 
 * Clojure
 
@@ -53,10 +53,13 @@ zwei Arten von Ausdrücken
   "Hallo"                     ; Zeichenkette
   false                       ; Wahrheitswert                
   symbol                      ; Symbol
-
   :read-only?                 ; Keywords
   #+end_src
-- zusammengesetzte Daten: =(or false (> 2 1))=
+- zusammengesetzte Ausdrücke
+
+  #+begin_src clojure
+  (or false (> 2 1))
+  #+end_src
 
 #+BEGIN_NOTES
 - Ausdrücke werden evaluiert / ausgewertet zu Werten
@@ -73,9 +76,9 @@ zwei Arten von Ausdrücken
 eingebaute Datenstrukturen
 
 #+begin_src clojure
-[1 2 3 4 5]                   ; Vektor
-{:name "Kaan" :loc-per-day 5} ; Map
-#{:rot :grün :blau}           ; Menge
+[1 2 3 4 5]                    ; Vektor
+{:name "Kaan", :loc-per-day 5} ; Map / Dictionary
+#{:rot :grün :blau}            ; Menge
 #+end_src
 
 #+BEGIN_NOTES
@@ -92,6 +95,56 @@ eingebaute Datenstrukturen
 
 *Syntax*
 
+eingebaute Datenstrukturen
+
+#+begin_src clojure
+[1 2 3 4 5]                    ; Vektor
+{:name "Kaan", :loc-per-day 5} ; Map
+#{:rot :grün :blau}            ; Menge
+#+end_src
+
+sind Literale!
+
+* Clojure -- Lisp-Dialekt
+
+*Syntax*
+
+eingebaute Datenstrukturen sind Literale
+
+#+begin_src clojure
+[{:name "Mara"
+  :age 23
+  :address {:street "Die Straße", :nr 12, :plz 72072}
+  :meals ["Spätzle mit Soß'" "Nudelauflauf"]}
+ {:name "Moritz"
+  :age 15
+  :address {:street "Jene Straße", :nr 2, :plz 22767}
+  :meals ["Fischbrötchen" "Döner Kebab"]}]
+#+end_src
+
+* Clojure -- Lisp-Dialekt
+
+*Syntax*
+
+eingebaute Datenstrukturen sind Literale
+
+#+begin_src clojure
+[{:name "Mara"
+  :age 23
+  :address {:street "Die Straße", :nr 12, :plz 72072}
+  :meals ["Spätzle mit Soß'" "Nudelauflauf"]}
+ {:name "Moritz"
+  :age 15
+  :address {:street "Jene Straße", :nr 2, :plz 22767}
+  :meals ["Fischbrötchen" "Döner Kebab"]}]
+#+end_src
+
+ => Clojure visualisiert Daten!
+ 
+* Clojure -- Lisp-Dialekt
+
+*Syntax*
+
 #+begin_src clojure
 (def pi 3.14159)           ; Definition         
 
@@ -101,6 +154,8 @@ eingebaute Datenstrukturen
 
 
 
+
+
 #+end_src
 
 * Clojure -- Lisp-Dialekt
@@ -116,6 +171,8 @@ eingebaute Datenstrukturen
 
 
 
+
+
 #+end_src
 
 * Clojure -- Lisp-Dialekt
@@ -125,13 +182,96 @@ eingebaute Datenstrukturen
 #+begin_src clojure
 (def pi 3.14159)           ; Definition
 
-(defn umfang [radius]      ; Funktionsdefinition     
+(defn umfang               ; Funktionsdefinition mit Docstring
+  "Berechnet den Umfang eines Kreises mit Radius `radius`"
+  [radius]      
+  (* 2 pi radius))
+
+
+
+
+#+end_src
+
+
+* Clojure -- Lisp-Dialekt
+
+*Syntax*
+
+#+begin_src clojure
+(def pi 3.14159)           ; Definition
+
+(defn umfang               ; Funktionsdefinition mit Docstring
+  "Berechnet den Umfang eines Kreises mit Radius `radius`"
+  [radius]      
   (* 2 pi radius))
 
 
 repl> (umfang 4)
 => 6.28318
 #+end_src
+
+
+* Clojure -- Lisp-Dialekt
+
+Präzedenz
+
+Java:
+
+#+begin_src java
+int b = 5 - 3 + 1;
+#+end_src
+
+* Clojure -- Lisp-Dialekt
+
+Präzedenz
+
+Java:
+
+#+begin_src java
+int b = 5 - 3 + 1;   // Abgemacht: (5 - 3) + 1
+#+end_src
+
+* Clojure -- Lisp-Dialekt
+
+*Präzedenz*
+
+Java:
+
+#+begin_src java
+int b = 5 - 3 + 1;
+#+end_src
+
+Clojure:
+
+#+begin_src clojure
+(+ (- 5 3)           ; in einer Zeile: (+ (- 5 3) 1)
+   1)
+#+end_src
+
+* Clojure -- Lisp-Dialekt
+
+Präzedenz
+
+Java:
+
+#+begin_src java
+int b = 5 - 3 + 1;
+#+end_src
+
+Clojure:
+
+#+begin_src clojure
+(+ (- 5 3)
+   1)
+#+end_src
+
+
+Java:
+
+#+begin_src java
+30+-3*5<<1>30==5<4||7>6&&7<6
+#+end_src
+???
 
 * Clojure
 
@@ -147,9 +287,9 @@ repl> (umfang 4)
 eingebaute Datenstrukturen
 
 #+begin_src clojure
-[1 2 3 4 5]                   ; Vektor
-{:name "Kaan" :loc-per-day 5} ; Map
-#{:rot :grün :blau}           ; Menge
+[1 2 3 4 5]                    ; Vektor
+{:name "Kaan", :loc-per-day 5} ; Map
+#{:rot :grün :blau}            ; Menge
 #+end_src
 
 sind *unveränderlich*
@@ -162,10 +302,10 @@ eingebaute Funktionen
 (def vektor [1 2 3 4 5])
 
 repl> (conj 6 vektor)
-=> [1 2 3 4 5]
+=> [1 2 3 4 5 6]
 
 repl> vektor
-=> [1 2 3 4 5 6]
+=> [1 2 3 4 5]
 #+end_src
 
 *verändern* Objekte *nicht*
@@ -189,33 +329,62 @@ file:images/effective-java.jpg
 file:images/immutability.jpeg
 #+HTML: </div></div>
 
+* Clojure -- Immutability
+
+#+HTML: <div style="display:flex;flex-direction:row">
+#+HTML: <img src="images/immutability.jpeg" width="300px"></img>
+
+#+HTML:<div style="flex: 1 0 auto">
+"There are many good reasons for this: 
+
+immutable classes are
+- easier to design
+- implement
+- use
+- less error prone and
+- more secure
+
+than mutable classes"
+#+HTML: </div>
+
+#+HTML: </div>
 
 * Clojure -- Immutability
 
-#+HTML: <div style="display:flex;flex-direction:row"><div style="max-width:400px;padding-left:130px;flex-direction:row">
-#+HTML: <img src="images/immutability.jpeg"></img>
+#+HTML: <div style="display:flex;flex-direction:row">
+#+HTML: <img src="images/immutability.jpeg" width="300px"></img>
 
-#+HTML:<div style="align:float-right">
-Don't provide any methods that modify the object's state
+#+HTML:<div style="flex: 1 0 auto">
 
-Ensure that the class can't be extended
+\\
+\\
 
-Make all fields =final=
-
-Make all fields =private=
-
-Ensure exclusive access to any mutable components
+1. Don't provide any methods that modify the object's state
+2. Ensure that the class can't be extended
+3. Make all fields =final=
+4. Make all fields =private=
+5. Ensure exclusive access to any mutable components
 #+HTML: </div>
 
-#+HTML: </div></div>
+#+HTML: </div>
 
 * Clojure -- Immutability
 
 weitere Vorteile
 
+- bessere Testbarkeit
 - weniger Kopplung
 - keine versteckten Abhängigkeiten
-- Neenläufigkeit einfacher und besser handlebar
+- Nebenläufigkeit einfacher und besser handhabbar
+
+* Clojure -- Immutability
+
+weitere Vorteile
+
+- bessere Testbarkeit
+- weniger Kopplung
+- keine versteckten Abhängigkeiten
+- Nebenläufigkeit einfacher und besser handhabbar
 
 => *verbessert Architektur!*
 
@@ -232,7 +401,7 @@ Effizienz?
 
 * Clojure -- Immutability
 
-Effizienz?
+Effizienz? BESSERES BEISPIEL
 
 #+begin_src clojure
 ["a" "b" "c" "d" "f" "g" "h"]
@@ -282,37 +451,9 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 
 * Clojure -- funktionale Programmierung
 
-MIKE: DIESE FOLIE WEG
-- Anonyme Funktionen
-- Funktionen höherer Ordnung  
-
-* Clojure -- funktionale Programmierung
-
-MIKE: DIESE FOLIE WEG
-- Anonyme Funktionen
-  #+begin_src clojure
-  (fn [a b] (and (or a b) (not (and a b))))
-
-  #(str "Hallo " % "!")
-  #+end_src
-- Funktionen höherer Ordnung
-    
-* Clojure -- funktionale Programmierung
-
-MIKE: DIESE FOLIE WEG
-- Anonyme Funktionen
-  #+begin_src clojure
-  (fn [a b] (and (or a b) (not (and a b))))
-
-  #(str "Hallo " % "!")
-  #+end_src
-- Funktionen höherer Ordnung
-  - =map=, =filter=, =reduce=
-
-* Clojure -- funktionale Programmierung
-
 #+begin_src clojure
 (map #(+ 15 %) [1 2 3 4 5])
+
 
 
 #+end_src
@@ -320,7 +461,17 @@ MIKE: DIESE FOLIE WEG
 * Clojure -- funktionale Programmierung
 
 #+begin_src clojure
-(map #(+ 15 %) [1 2 3 4 5])
+(map #(+ 15 %)
+     [1 2 3 4 5])
+
+
+#+end_src
+
+* Clojure -- funktionale Programmierung
+
+#+begin_src clojure
+(map #(+ 15 %)
+     [1 2 3 4 5])
 
 => [16 17 18 19 20]
 #+end_src
@@ -328,9 +479,12 @@ MIKE: DIESE FOLIE WEG
 * Clojure -- funktionale Programmierung
 
 #+begin_src clojure
-(filter (fn [[key val]] (> (:age val) 17))
-        {:max {:age 23 :address "Die Straße"}
-         :moritz {:age 15 :address "Die andere Straße"}})
+(filter (fn [person]
+          (> (:age person) 17))
+        [{:name "Mara", :age 23}
+         {:name "Moritz", :age 15}
+         {:name "Marlene", :age 25}]))
+
 
 
 #+end_src
@@ -338,21 +492,25 @@ MIKE: DIESE FOLIE WEG
 * Clojure -- funktionale Programmierung
 
 #+begin_src clojure
-(filter (fn [[key val]] (> (:age val) 17))
-        {:max {:age 23 :address "Die Straße"}
-         :moritz {:age 15 :address "Die andere Straße"}})
+(filter (fn [person]
+          (> (:age person) 17))
+        [{:name "Mara", :age 23}
+         {:name "Moritz", :age 15}
+         {:name "Marlene", :age 25}]))
 
-=> {:max {:age 23 :address "Die Straße"}}
+=> [{:name "Mara", :age 23}
+    {:name "Marlene", :age 25}]
 #+end_src
 
 * Clojure -- funktionale Programmierung
 
 #+begin_src clojure
-(reduce (fn [acc el]
-          (+ acc (:age (val el))))
+(reduce (fn [acc person]
+          (+ acc (:age person)))
         0
-        {:max {:age 23 :address "Die Straße"}
-         :moritz {:age 15 :address "Die andere Straße"}})
+        [{:name "Mara", :age 23}
+         {:name "Moritz", :age 15}
+         {:name "Marlene", :age 25}])
 
 
 #+end_src
@@ -360,13 +518,14 @@ MIKE: DIESE FOLIE WEG
 * Clojure -- funktionale Programmierung
 
 #+begin_src clojure
-(reduce (fn [acc el]
-          (+ acc (:age (val el))))
+(reduce (fn [acc person]
+          (+ acc (:age person)))
         0
-        {:max {:age 23 :address "Die Straße"}
-         :moritz {:age 15 :address "Die andere Straße"}})
+        [{:name "Mara", :age 23}
+         {:name "Moritz", :age 15}
+         {:name "Marlene", :age 25}])
 
-=> 38
+=> 63
 #+end_src
 
 * Clojure
@@ -384,10 +543,51 @@ MIKE: DIESE FOLIE WEG
 
 INTERFACE NOCH
 
+* Clojure -- Interop mit Java
+
+*Java in Clojure*
+
+* Clojure -- Interop mit Java
+
+*Clojure in Java*
+
+wir habne jetzt interop und voruzüge von clojur immutab
+
+und wirkt sich auf große makro aus:
+
+clojure imutabl so weit ab seiteneffekte auf rand verdrängen codde immutable
+
+
 * Funktionale Softwarearchitektur
 
-- Onion-Architecture
-- Hexagonale Architektur
+- *Functional Core -- Imperative Shell*
+
+innerer kern imm gut testbar
+
+bestandcode von kunden, oder libraries die es für clojure nicht gibt (kafka
+
+
+BILD
+
+Beispiel Java-Anwendung graduelle auf Clojure
+- eignet sich functionalcore zu implementieren
+- interop imperative shell
+
+
+* Wie gehts weiter?
+
+#+HTML: <div><div style="max-width:400px;padding-left:130px">
+file:images/active-group.png
+#+HTML: </div></div>
+
+
+- Wir geben Schulungen in:
+  - Einführung in die funktionale Programmierung
+  - iSAQB FOUNDATION: Grundausbildung Softwarearchitektur
+  - iSAQB FUNAR: Funktionale Softwarearchitektur
+  - iSAQB FLEX: Microservices und Self-Contained Systems
+
+- https://funktionale-programmierung.de
 
 * ?Event-Sourcing?
 
@@ -401,3 +601,65 @@ Passt gut zu Immutability
 
 # #+RESULTS:
 # [[file:images/hello-uml.png]]
+
+
+Theme:  doom-tomorrow-day
+
+
+
+* fedback
+
+- Wir machen haupt funk Pr, eine Sprache, die wir häufig benutzen, ist Clojure,
+  die möchte ich euch heute vorstellen
+
+- "unterstützt unv datentypen" zu schwach -> per default / standardmäßig
+- bei REPL wirklich sagen "interaktiv" etc.
+- bei interaktiv zeigen:
+  - erst in repl sachen zeigen, dann : aber wenn ich entwickle, dann benutz ich
+    das gar nicht, sondern direkt im editorfenster
+  - das geht hier, sogar mit java code
+- clojure ist speziell implementiert, dass es das sehr optimiert
+
+
+
+- einführung ohne alles aufzuzählen außer "besonderes augenmekr"
+
+- Zu 5.1 Syntax "es gibt keine Statements", keine Keywords, nur Funktionen
+  - besteht nur aus zwei ausdrücken, funktionsaufrufe und atomare ausdrücke
+
+- fetter auftragen: diese synax haat vorteile: jeder aufruf sieht gleich aus! METAPROGRAMMIERUNG
+
+- eingebaute datenstrukturen:
+  - EINGEBAUTE SYNTAX, kann man kaum mehr wertschätzen
+
+- Präzedenz: In Clojure wird die Reihenfolge immer explizit durch die vorgegebene Syntax, keine Gedanken, klar erkennbar
+
+- Interaktiv:
+  - default-text-scale, damit in Emacs alles größer wird
+  - namespace in die repl laden
+    - "reloaden"
+    - (ns ..) erklären
+  - project-file gar nicht zeigen, nur sagen, dass man das file einbinden muss
+
+
+so jezt habt ihr eigentlich lles gesehen, jetzt k[nnt ihr loslegen clojure zu schreiben!
+
+dann:
+
+falls ihr appetit bekommen habt, clojure zu machen,
+was kann ich damit anfangen, damit dass die interop so gut ist, bietet es sich an, graduell umzubauen
+kern funtkional, rand interop, rand größer werden lässt mit der zeit
+
+
+
+Und wenn ihr Unterstützung braucht:
+
+
+
+- Wir geben Schulungn in:
+  - Einführung in die funktionale Programmierung
+  - iSAQB FOUNDATION: Grundausbildung Softwarearchitektur
+  - iSAQB FUNAR: Funktionale Softwarearchitektur
+  - iSAQB FLEX: Microservices und Self-Contained Systems
+
+- https://funktionale-programmierung.de (größter deutschprachiger Blog über FP)

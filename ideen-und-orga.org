@@ -44,6 +44,8 @@
 
 * Vorbereitungen
 
+Theme aktivieren für Folien:  doom-tomorrow-day
+
 * Snippets/Ideen/Todos
 
 - [ ] Mike anhauen
@@ -128,3 +130,14 @@ funktioniert bisher nicht
   java -cp ".:clj/target/uberjar/clj-0.1.0-SNAPSHOT-standalone.jar" Main.java
   #+end_src
   ausführen
+
+
+
+ABLAUF:
+
+
+CLJS:
+
+#+begin_src bash
+npx shadow-cljs watch frontend
+#+end_src
