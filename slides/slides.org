@@ -11,6 +11,7 @@
 #+REVEAL_TITLE_SLIDE: %d
 #+REVEAL_TITLE_SLIDE_BACKGROUND: file:///home/kaan/active-group/vortraege/2022-09-15_Clojure und Java Hand in Hand/slides/title-slide.png
 
+
 * Clojure und Java – Hand in Hand!
 
 - Clojure 101
@@ -61,13 +62,70 @@ zwei Arten von Ausdrücken
   (or false (> 2 1))
   #+end_src
 
-#+BEGIN_NOTES
-- Ausdrücke werden evaluiert / ausgewertet zu Werten
-- Ein Ausdruck mit Klammern ist meistens ein Funktionsaufruf
-- Heute wird es aber oft was anderes sein, ein Makro oder eine special form
-- In Clojure gibt es noch drei weitere Arten von collection types: Vektoren,
-  Maps und Mengen
-#+END_NOTES
+* Clojure -- Lisp-Dialekt
+
+*Präzedenz*
+
+Java:
+
+#+begin_src java
+int b = 5 - 3 + 1;
+#+end_src
+
+* Clojure -- Lisp-Dialekt
+
+*Präzedenz*
+
+Java:
+
+#+begin_src java
+int b = 5 - 3 + 1;   // Abgemacht: (5 - 3) + 1
+#+end_src
+
+* Clojure -- Lisp-Dialekt
+
+*Präzedenz*
+
+Java:
+
+#+begin_src java
+int b = 5 - 3 + 1;
+#+end_src
+
+Clojure:
+
+#+begin_src clojure
+(+ (- 5 3)           ; in einer Zeile: (+ (- 5 3) 1)
+   1)
+#+end_src
+
+* Clojure -- Lisp-Dialekt
+
+*Präzedenz*
+
+Java:
+
+#+begin_src java
+int b = 5 - 3 + 1;
+#+end_src
+
+Clojure:
+
+#+begin_src clojure
+(+ (- 5 3)
+   1)
+#+end_src
+
+
+Java:
+
+#+begin_src java
+30+-3*5<<1>30==5<4||7>6&&7<6
+#+end_src
+???
+
+
+
 
 * Clojure -- Lisp-Dialekt
 
@@ -80,16 +138,6 @@ eingebaute Datenstrukturen
 {:name "Kaan", :loc-per-day 5} ; Map / Dictionary
 #{:rot :grün :blau}            ; Menge
 #+end_src
-
-#+BEGIN_NOTES
-- Ein Ausdruck mit Klammern ist meistens ein
-  Funktionsaufruf
-- In Clojure gibt es noch drei weitere eingebaute
-  Datenstrukturen, für die es spezielle Syntax
-   gibt: Vektoren, Maps und Mengen
-- Das Schöne daran ist, dass Clojure Daten visualisiert, man sieht, was man
-  vorliegen hat
-#+END_NOTES
 
 * Clojure -- Lisp-Dialekt
 
@@ -207,71 +255,8 @@ eingebaute Datenstrukturen sind Literale
 
 
 repl> (umfang 4)
-=> 6.28318
+=> 25.13272
 #+end_src
-
-
-* Clojure -- Lisp-Dialekt
-
-Präzedenz
-
-Java:
-
-#+begin_src java
-int b = 5 - 3 + 1;
-#+end_src
-
-* Clojure -- Lisp-Dialekt
-
-Präzedenz
-
-Java:
-
-#+begin_src java
-int b = 5 - 3 + 1;   // Abgemacht: (5 - 3) + 1
-#+end_src
-
-* Clojure -- Lisp-Dialekt
-
-*Präzedenz*
-
-Java:
-
-#+begin_src java
-int b = 5 - 3 + 1;
-#+end_src
-
-Clojure:
-
-#+begin_src clojure
-(+ (- 5 3)           ; in einer Zeile: (+ (- 5 3) 1)
-   1)
-#+end_src
-
-* Clojure -- Lisp-Dialekt
-
-Präzedenz
-
-Java:
-
-#+begin_src java
-int b = 5 - 3 + 1;
-#+end_src
-
-Clojure:
-
-#+begin_src clojure
-(+ (- 5 3)
-   1)
-#+end_src
-
-
-Java:
-
-#+begin_src java
-30+-3*5<<1>30==5<4||7>6&&7<6
-#+end_src
-???
 
 * Clojure
 
@@ -357,7 +342,8 @@ than mutable classes"
 #+HTML:<div style="flex: 1 0 auto">
 
 \\
-\\
+
+*Rules*
 
 1. Don't provide any methods that modify the object's state
 2. Ensure that the class can't be extended
@@ -549,16 +535,14 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 
 *Clojure in Java*
 
-wir habne jetzt interop und voruzüge von clojur immutab
-
-und wirkt sich auf große makro aus:
-
-clojure imutabl so weit ab seiteneffekte auf rand verdrängen codde immutable
-
-
 * Funktionale Softwarearchitektur
 
 *Functional Core -- Imperative Shell*
+
+#+HTML: <div><div style="max-width:400px;">
+[[file:images/functional-core.png]]
+#+HTML: </div></div>
+
 
 * Funktionale Softwarearchitektur
 
@@ -594,21 +578,6 @@ clojure imutabl so weit ab seiteneffekte auf rand verdrängen codde immutable
 
 3. Die Imperative Shell benutzt den Functional Core, \\
    aber der Functional Core weiß nichts von der Shell
-   
-* Funktionale Softwarearchitektur -- KOMMENTAR
-   
-   
-innerer kern imm gut testbar
-
-bestandcode von kunden, oder libraries die es für clojure nicht gibt (kafka
-
-
-BILD
-
-Beispiel Java-Anwendung graduelle auf Clojure
-- eignet sich functionalcore zu implementieren
-- interop imperative shell
-
 
 * Wie gehts weiter?
 
@@ -624,78 +593,3 @@ file:images/active-group.png
   - iSAQB FLEX: Microservices und Self-Contained Systems
 
 - Blog https://funktionale-programmierung.de
-
-* ?Event-Sourcing?
-
-Passt gut zu Immutability
-
-* Falls ich Plantuml benutze:
-
-# #+begin_src plantuml :file images/hello-uml.png
-# Bob -> Alice : Hello World!
-# #+end_src
-
-# #+RESULTS:
-# [[file:images/hello-uml.png]]
-
-
-Theme:  doom-tomorrow-day
-
-
-
-* fedback
-
-- Wir machen haupt funk Pr, eine Sprache, die wir häufig benutzen, ist Clojure,
-  die möchte ich euch heute vorstellen
-
-- "unterstützt unv datentypen" zu schwach -> per default / standardmäßig
-- bei REPL wirklich sagen "interaktiv" etc.
-- bei interaktiv zeigen:
-  - erst in repl sachen zeigen, dann : aber wenn ich entwickle, dann benutz ich
-    das gar nicht, sondern direkt im editorfenster
-  - das geht hier, sogar mit java code
-- clojure ist speziell implementiert, dass es das sehr optimiert
-
-
-
-- einführung ohne alles aufzuzählen außer "besonderes augenmekr"
-
-- Zu 5.1 Syntax "es gibt keine Statements", keine Keywords, nur Funktionen
-  - besteht nur aus zwei ausdrücken, funktionsaufrufe und atomare ausdrücke
-
-- fetter auftragen: diese synax haat vorteile: jeder aufruf sieht gleich aus! METAPROGRAMMIERUNG
-
-- eingebaute datenstrukturen:
-  - EINGEBAUTE SYNTAX, kann man kaum mehr wertschätzen
-
-- Präzedenz: In Clojure wird die Reihenfolge immer explizit durch die vorgegebene Syntax, keine Gedanken, klar erkennbar
-
-- Interaktiv:
-  - [X] default-text-scale, damit in Emacs alles größer wird
-  - namespace in die repl laden
-    - "reloaden"
-    - (ns ..) erklären
-  - project-file gar nicht zeigen, nur sagen, dass man das file einbinden muss
-
-
-so jezt habt ihr eigentlich lles gesehen, jetzt k[nnt ihr loslegen clojure zu schreiben!
-
-dann:
-
-falls ihr appetit bekommen habt, clojure zu machen,
-was kann ich damit anfangen, damit dass die interop so gut ist, bietet es sich an, graduell umzubauen
-kern funtkional, rand interop, rand größer werden lässt mit der zeit
-
-
-
-Und wenn ihr Unterstützung braucht:
-
-
-
-- Wir geben Schulungn in:
-  - Einführung in die funktionale Programmierung
-  - iSAQB FOUNDATION: Grundausbildung Softwarearchitektur
-  - iSAQB FUNAR: Funktionale Softwarearchitektur
-  - iSAQB FLEX: Microservices und Self-Contained Systems
-
-- https://funktionale-programmierung.de (größter deutschprachiger Blog über FP)

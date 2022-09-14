@@ -133,7 +133,7 @@ funktioniert bisher nicht
 
 
 
-ABLAUF:
+* ABLAUF
 
 
 CLJS:
@@ -141,3 +141,50 @@ CLJS:
 #+begin_src bash
 npx shadow-cljs watch frontend
 #+end_src
+
+
+* feedback
+
+- Wir machen haupt funk Pr, eine Sprache, die wir häufig benutzen, ist Clojure,
+  die möchte ich euch heute vorstellen
+
+- "unterstützt unv datentypen" zu schwach -> per default / standardmäßig
+- bei DEFN sagen: "keine Typangabe, dynamisch getypt" -- "Das wird interessant,
+  wie Interop dann funktioniert"
+- bei REPL wirklich sagen "interaktiv" etc.
+- bei interaktiv zeigen:
+  - erst in repl sachen zeigen, dann : aber wenn ich entwickle, dann benutz ich
+    das gar nicht, sondern direkt im editorfenster
+  - das geht hier, sogar mit java code
+- clojure ist speziell implementiert, dass es das sehr optimiert
+
+
+
+- einführung ohne alles aufzuzählen außer "besonderes augenmekr"
+
+- Zu 5.1 Syntax "es gibt keine Statements", keine Keywords, nur Funktionen
+  - besteht nur aus zwei ausdrücken, funktionsaufrufe und atomare ausdrücke
+
+- fetter auftragen: diese synax haat vorteile: jeder aufruf sieht gleich aus! METAPROGRAMMIERUNG
+
+- eingebaute datenstrukturen:
+  - EINGEBAUTE SYNTAX, kann man kaum mehr wertschätzen
+
+- Präzedenz: In Clojure wird die Reihenfolge immer explizit durch die vorgegebene Syntax, keine Gedanken, klar erkennbar
+
+- Interaktiv:
+  - [X] default-text-scale, damit in Emacs alles größer wird
+  - namespace in die repl laden
+    - "reloaden"
+    - (ns ..) erklären
+  - project-file gar nicht zeigen, nur sagen, dass man das file einbinden muss
+
+
+so jezt habt ihr eigentlich lles gesehen, jetzt k[nnt ihr loslegen clojure zu schreiben!
+
+dann:
+
+falls ihr appetit bekommen habt, clojure zu machen,
+was kann ich damit anfangen, damit dass die interop so gut ist, bietet es sich an, graduell umzubauen
+kern funtkional, rand interop, rand größer werden lässt mit der zeit
+

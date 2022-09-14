@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Clojure und Java – Hand in Hand!</title>
+<meta name="author" content="Kaan Sahin, Active Group GmbH"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/kaan/tmp/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/kaan/tmp/reveal.js/css/theme/active.css" id="theme"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'file:///home/kaan/tmp/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="file:///home/kaan/active-group/vortraege/2022-09-15_Clojure und Java Hand in Hand/slides/title-slide.png">
+
+</section>
+
+<section>
+<section id="slide-orgb49ab62">
+<h2 id="orgb49ab62">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #8959a8;">ns</span> <span style="color: #bb9200;">calljava.core</span>)
+
+(<span style="color: #8959a8;">defn</span> <span style="color: #4271ae;">-main</span>
+  <span style="color: #8e908c; font-style: italic;">"I don't do a whole lot ... yet."</span>
+  [&amp; args]
+  (println <span style="color: #718c00;">"Hello, World!"</span>))
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc0eb4e1">
+<h2 id="orgc0eb4e1">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #8959a8;">ns</span> <span style="color: #bb9200;">calljava.core</span>)
+
+--
+
+repl&gt; (java.util.Date.)
+#inst <span style="color: #718c00;">"2022-09-14T18:04:22.941-00:00"</span>
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org6fdd60a">
+<h2 id="org6fdd60a">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #8959a8;">ns</span> <span style="color: #bb9200;">calljava.core</span>)
+
+--
+
+repl&gt; (.toString (java.util.Date.))
+<span style="color: #718c00;">"Wed Sep 14 20:04:22 CEST 2022"</span>
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org1b9e44b">
+<h2 id="org1b9e44b">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #8959a8;">ns</span> <span style="color: #bb9200;">calljava.core</span>
+  (<span style="color: #f5871f;">:import</span> java.util.Date)
+
+--
+
+repl&gt; (.toString (Date.))
+<span style="color: #718c00;">"Wed Sep 14 20:04:22 CEST 2022"</span>
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgec9c3e2">
+<h2 id="orgec9c3e2">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #8959a8;">import</span> <span style="color: #f5871f;">java</span>.<span style="color: #f5871f;">lang</span>.<span style="color: #bb9200;">Math</span>;
+
+<span style="color: #8959a8;">public</span> <span style="color: #8959a8;">class</span> <span style="color: #bb9200;">Point</span> {
+
+    <span style="color: #8959a8;">public</span> <span style="color: #bb9200;">double</span> <span style="color: #c82829;">x</span>, <span style="color: #c82829;">y</span>;
+
+    <span style="color: #8959a8;">public</span> <span style="color: #4271ae;">Point</span>(<span style="color: #bb9200;">double</span> <span style="color: #c82829;">x</span>, <span style="color: #bb9200;">double</span> <span style="color: #c82829;">y</span>){
+        <span style="color: #8959a8;">this</span>.x = x;
+        <span style="color: #8959a8;">this</span>.y = y;
+    }
+
+    <span style="color: #8959a8;">public</span> <span style="color: #bb9200;">double</span> <span style="color: #4271ae;">distanceToPoint</span>(<span style="color: #bb9200;">Point</span> <span style="color: #c82829;">otherPoint</span>){
+        <span style="color: #bb9200;">double</span> <span style="color: #c82829;">xDiff</span> = otherPoint.x - <span style="color: #8959a8;">this</span>.x;
+        <span style="color: #bb9200;">double</span> <span style="color: #c82829;">yDiff</span> = otherPoint.y - <span style="color: #8959a8;">this</span>.y;
+
+        <span style="color: #8959a8;">return</span> Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
+    }
+}
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org6aeca23">
+<h2 id="org6aeca23">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #8959a8;">ns</span> <span style="color: #bb9200;">calljava.core</span>
+  (<span style="color: #f5871f;">:import</span> Point)
+
+(<span style="color: #8959a8;">defn</span> <span style="color: #4271ae;">-main</span>
+  <span style="color: #8e908c; font-style: italic;">"I don't do a whole lot ... yet."</span>
+  [&amp; args]
+  (println <span style="color: #718c00;">"Hello, World!"</span>))
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org4f8590f">
+<h2 id="org4f8590f">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #8959a8;">ns</span> <span style="color: #bb9200;">calljava.core</span>
+  (<span style="color: #f5871f;">:import</span> Point))
+
+-- 
+
+repl&gt; (Point. 3 4)
+#object[Point 0x77346bc5 <span style="color: #718c00;">"Point@77346bc5"</span>]
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org148c95d">
+<h2 id="org148c95d">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #8959a8;">ns</span> <span style="color: #bb9200;">calljava.core</span>
+  (<span style="color: #f5871f;">:import</span> Point))
+
+(<span style="color: #8959a8;">def</span> <span style="color: #c82829;">p</span> (Point. 3 4))
+
+-- 
+
+repl&gt; p
+#object[Point 0x77346bc5 <span style="color: #718c00;">"Point@77346bc5"</span>]
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org84a1fa9">
+<h2 id="org84a1fa9">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #8959a8;">ns</span> <span style="color: #bb9200;">calljava.core</span>
+  (<span style="color: #f5871f;">:import</span> Point))
+
+(<span style="color: #8959a8;">def</span> <span style="color: #c82829;">p</span> (Point. 3 4))
+
+-- 
+
+repl&gt; (.-x p)
+3
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org33c5242">
+<h2 id="org33c5242">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #8959a8;">ns</span> <span style="color: #bb9200;">calljava.core</span>
+  (<span style="color: #f5871f;">:import</span> Point))
+
+(<span style="color: #8959a8;">def</span> <span style="color: #c82829;">p</span> (Point. 3 4))
+
+-- 
+
+repl&gt; (.-y p)
+4
+
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org41afc3b">
+<h2 id="org41afc3b">Java in Clojure</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #8959a8;">ns</span> <span style="color: #bb9200;">calljava.core</span>
+  (<span style="color: #f5871f;">:import</span> Point))
+
+(<span style="color: #8959a8;">def</span> <span style="color: #c82829;">p</span> (Point. 3 4))
+
+-- 
+
+repl&gt; (.distanceToPoint p (Point. 0 0))
+5
+
+</pre>
+</div>
+
+
+<p>
+(defn add-5 [x]
+  (+ 5 x))
+</p>
+
+<p>
+(+ 1 2)
+</p>
+
+<p>
+(map add-5 [3 4])
+</p>
+
+<p>
+;;; 2. Java-interne Libraries
+</p>
+
+<p>
+(Date.)
+(.toString (java.util.Date.))
+</p>
+
+<p>
+;;; 3. eigene Libraries
+</p>
+
+<p>
+(def p (Point. 3 4))
+</p>
+
+<p>
+p.x
+</p>
+
+<p>
+(.-x p)
+(.-y p)
+</p>
+
+
+<p>
+(.distanceToPoint p (make-point 3 4))
+</p>
+
+<p>
+(defn make-point [x y]
+  (Point. x y))
+</p>
+
+<p>
+(defn distance-to-origin [point]
+  (.distanceToPoint p (make-point 0 0)))
+</p>
+
+<p>
+(distance-to-origin p)
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="file:///home/kaan/tmp/reveal.js/js/reveal.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 't',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'none', // see README of reveal.js for options
+transitionSpeed: 'default',
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+ { src: 'file:///home/kaan/tmp/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+</script>
+</body>
+</html>

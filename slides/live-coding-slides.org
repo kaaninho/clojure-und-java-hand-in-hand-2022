@@ -1,0 +1,203 @@
+#+title: Clojure und Java – Hand in Hand!
+#+author: Kaan Sahin, Active Group GmbH
+#+REVEAL_PLUGINS: (notes)
+#+REVEAL_THEME: active
+#+REVEAL_ROOT: file:///home/kaan/tmp/reveal.js
+#+REVEAL_HLEVEL: 100
+#+REVEAL_TRANS: none
+#+OPTIONS: num:nil toc:nil reveal-center:f reveal_slide_number:t
+#+MACRO: newline   src_emacs-lisp[:results raw]{"\n "}
+#+MACRO: TIKZ-IMG #+HEADER: :exports results :file $1 :imagemagick yes {{{newline}}} #+HEADER: :results raw {{{newline}}} #+HEADER: :headers '("\usepackage{tikz}") {{{newline}}} #+HEADER: :fit yes :imoutoptions -geometry $2 :iminoptions -density 600
+#+REVEAL_TITLE_SLIDE: %d
+#+REVEAL_TITLE_SLIDE_BACKGROUND: file:///home/kaan/active-group/vortraege/2022-09-15_Clojure und Java Hand in Hand/slides/title-slide.png
+
+* Java in Clojure
+
+#+begin_src clojure
+(ns calljava.core)
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (println "Hello, World!"))
+
+#+end_src
+
+* Java in Clojure
+
+#+begin_src clojure
+(ns calljava.core)
+
+--
+
+repl> (java.util.Date.)
+#inst "2022-09-14T18:04:22.941-00:00"
+
+#+end_src
+
+* Java in Clojure
+
+#+begin_src clojure
+(ns calljava.core)
+
+--
+
+repl> (.toString (java.util.Date.))
+"Wed Sep 14 20:04:22 CEST 2022"
+
+#+end_src
+
+* Java in Clojure
+
+#+begin_src clojure
+(ns calljava.core
+  (:import java.util.Date)
+
+--
+
+repl> (.toString (Date.))
+"Wed Sep 14 20:04:22 CEST 2022"
+
+#+end_src
+
+* Java in Clojure
+
+#+begin_src java
+import java.lang.Math;
+
+public class Point {
+
+    public double x, y;
+
+    public Point(double x, double y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public double distanceToPoint(Point otherPoint){
+        double xDiff = otherPoint.x - this.x;
+        double yDiff = otherPoint.y - this.y;
+
+        return Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
+    }
+}
+#+end_src
+
+* Java in Clojure
+
+#+begin_src clojure
+(ns calljava.core
+  (:import Point)
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (println "Hello, World!"))
+
+#+end_src
+
+* Java in Clojure
+
+#+begin_src clojure
+(ns calljava.core
+  (:import Point))
+
+-- 
+
+repl> (Point. 3 4)
+#object[Point 0x77346bc5 "Point@77346bc5"]
+
+#+end_src
+
+* Java in Clojure
+
+#+begin_src clojure
+(ns calljava.core
+  (:import Point))
+
+(def p (Point. 3 4))
+  
+-- 
+
+repl> p
+#object[Point 0x77346bc5 "Point@77346bc5"]
+
+#+end_src
+
+* Java in Clojure
+
+#+begin_src clojure
+(ns calljava.core
+  (:import Point))
+
+(def p (Point. 3 4))
+  
+-- 
+
+repl> (.-x p)
+3
+
+#+end_src
+
+* Java in Clojure
+
+#+begin_src clojure
+(ns calljava.core
+  (:import Point))
+
+(def p (Point. 3 4))
+  
+-- 
+
+repl> (.-y p)
+4
+
+#+end_src
+
+* Java in Clojure
+
+#+begin_src clojure
+(ns calljava.core
+  (:import Point))
+
+(def p (Point. 3 4))
+  
+-- 
+
+repl> (.distanceToPoint p (Point. 0 0))
+5
+
+#+end_src
+
+
+(defn add-5 [x]
+  (+ 5 x))
+
+(+ 1 2)
+
+(map add-5 [3 4])
+
+;;; 2. Java-interne Libraries
+
+(Date.)
+(.toString (java.util.Date.))
+
+;;; 3. eigene Libraries
+
+(def p (Point. 3 4))
+
+p.x
+
+(.-x p)
+(.-y p)
+
+
+(.distanceToPoint p (make-point 3 4))
+
+(defn make-point [x y]
+  (Point. x y))
+
+(defn distance-to-origin [point]
+  (.distanceToPoint p (make-point 0 0)))
+
+(distance-to-origin p)
