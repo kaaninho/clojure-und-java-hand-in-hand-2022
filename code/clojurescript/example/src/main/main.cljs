@@ -5,6 +5,8 @@
             [reacl-c-basics.forms.core :as forms]
             [reacl-c-basics.forms.types :as types]))
 
+;; starte server mit:
+;; npx shadow-cljs watch frontend
 
 
 
@@ -12,7 +14,7 @@
 
 
 (def style-1 {:style {:margin "50px"}})
-(def style-2 {:style {:margin-bottom "50px"}})
+(def style-2 {:style {:margin-bottom "75px"}})
 
 (def initial-state {:name "" :age 0})
 
@@ -25,20 +27,18 @@
 
 
 (defn root []
-  (c/fragment
-   (dom/div
-    style-1
+  (dom/div
+   style-1
 
-    (dom/h1 style-2
-            "Gib bitte Deinen Namen und Dein Alter ein")
+   (dom/h2 style-2
+           "Gib bitte Deinen Namen und Dein Alter ein")
 
-    (c/focus :name (labelled-input "Name" "string"))
-    (c/focus :age (labelled-input "Alter" types/integer))
-    
-    (dom/br)
-    (dom/br)
+   (c/focus :name (labelled-input "Name" "string"))
 
-    (dom/button "Submit"))))
+   (dom/br)
+   (dom/br)
+
+   (dom/button "Submit")))
 
 
 

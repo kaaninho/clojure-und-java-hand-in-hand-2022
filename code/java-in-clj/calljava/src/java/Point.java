@@ -16,7 +16,4 @@ public class Point {
         return Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
     }
 
-    public static int silly(int x){
-        return x + 3;
-    }
 }

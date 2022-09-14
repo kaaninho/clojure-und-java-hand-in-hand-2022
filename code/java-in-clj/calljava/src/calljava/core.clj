@@ -1,41 +1,36 @@
-(ns calljava.core
-  (:gen-class)
-  (:import
-
-   java.util.Date
-   ;; dann
-   Point))
+(ns calljava.core)
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
   (println "Hello, World!"))
 
-;;; 1. Java-interne Libraries
-
-(java.util.Date.)
-
-Date.toString
-
-(.toString (new java.util.Date))
+;;; 1. REPL und Editor-Magic
 
 
-(def p (Point. 3 4))
 
-(.-x p)
-
-(.-y p)
+;;; 2. Java-interne Libraries
 
 
-(.distanceToPoint p (Point. 0 0))
+
+;;; 3. eigene Libraries
 
 
-- special syntax für interop
 
 
-- wenn ihr jetzt das gefühl habt, dass da noch viel fehlt, dass es so einfach nicht sein kann,
-  dann kann ich euch beruhigen: das war schon alles, damit hat man alles in der hand, um interop zu machen
-- interfaces fehlen noch, ist auch kein problem
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -65,8 +60,6 @@ Date.toString
 
 ;;; Dann eigene Java Libraries
 
-(Point/silly 5)
-
 (def thePoint (Point. 1 2))
 
 (.-x thePoint)
@@ -82,3 +75,12 @@ Date.toString
   (.distanceToPoint point (Point. 0 0)))
 
 (distance-to-origin (Point. 3 4))
+
+
+;; Interfaces implementieren
+
+(defrecord Point3D [x y z]
+  Object
+  (toString [_] (str "X-Koord: " x ", Y-Koord: " y "Z-Koord: " z)))
+
+(str (->Point3D 1 2 3))

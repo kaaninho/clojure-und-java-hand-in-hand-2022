@@ -99,7 +99,7 @@ eingebaute Datenstrukturen
 
 #+begin_src clojure
 [1 2 3 4 5]                    ; Vektor
-{:name "Kaan", :loc-per-day 5} ; Map
+{:name "Kaan", :loc-per-day 5} ; Map / Dictionary
 #{:rot :grün :blau}            ; Menge
 #+end_src
 
@@ -112,7 +112,7 @@ sind Literale!
 eingebaute Datenstrukturen sind Literale
 
 #+begin_src clojure
-[{:name "Mara"
+[{:name "Merve"
   :age 23
   :address {:street "Die Straße", :nr 12, :plz 72072}
   :meals ["Spätzle mit Soß'" "Nudelauflauf"]}
@@ -129,7 +129,7 @@ eingebaute Datenstrukturen sind Literale
 eingebaute Datenstrukturen sind Literale
 
 #+begin_src clojure
-[{:name "Mara"
+[{:name "Merve"
   :age 23
   :address {:street "Die Straße", :nr 12, :plz 72072}
   :meals ["Spätzle mit Soß'" "Nudelauflauf"]}
@@ -401,7 +401,7 @@ Effizienz?
 
 * Clojure -- Immutability
 
-Effizienz? BESSERES BEISPIEL
+Effizienz?
 
 #+begin_src clojure
 ["a" "b" "c" "d" "f" "g" "h"]
@@ -481,9 +481,9 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 #+begin_src clojure
 (filter (fn [person]
           (> (:age person) 17))
-        [{:name "Mara", :age 23}
+        [{:name "Merve", :age 23}
          {:name "Moritz", :age 15}
-         {:name "Marlene", :age 25}]))
+         {:name "Mara", :age 25}]))
 
 
 
@@ -494,12 +494,12 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 #+begin_src clojure
 (filter (fn [person]
           (> (:age person) 17))
-        [{:name "Mara", :age 23}
+        [{:name "Merve", :age 23}
          {:name "Moritz", :age 15}
-         {:name "Marlene", :age 25}]))
+         {:name "Mara", :age 25}]))
 
-=> [{:name "Mara", :age 23}
-    {:name "Marlene", :age 25}]
+=> [{:name "Merve", :age 23}
+    {:name "Mara", :age 25}]
 #+end_src
 
 * Clojure -- funktionale Programmierung
@@ -508,9 +508,9 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 (reduce (fn [acc person]
           (+ acc (:age person)))
         0
-        [{:name "Mara", :age 23}
+        [{:name "Merve", :age 23}
          {:name "Moritz", :age 15}
-         {:name "Marlene", :age 25}])
+         {:name "Mara", :age 25}])
 
 
 #+end_src
@@ -521,9 +521,9 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 (reduce (fn [acc person]
           (+ acc (:age person)))
         0
-        [{:name "Mara", :age 23}
+        [{:name "Merve", :age 23}
          {:name "Moritz", :age 15}
-         {:name "Marlene", :age 25}])
+         {:name "Mara", :age 25}])
 
 => 63
 #+end_src
@@ -539,9 +539,7 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 
 * Clojure -- Interop mit Java
 
-?!Live-Demo?!
-
-INTERFACE NOCH
+*Live-Demo*
 
 * Clojure -- Interop mit Java
 
@@ -560,8 +558,46 @@ clojure imutabl so weit ab seiteneffekte auf rand verdrängen codde immutable
 
 * Funktionale Softwarearchitektur
 
-- *Functional Core -- Imperative Shell*
+*Functional Core -- Imperative Shell*
 
+* Funktionale Softwarearchitektur
+
+*Functional Core -- Imperative Shell*
+
+1. *Businesslogik* (Domänenlogik) wird im Functional Core abgebildet \\
+   => mit unveränderbaren Datenstrukturen \\
+   => mit puren Funktionen
+
+* Funktionale Softwarearchitektur
+
+*Functional Core -- Imperative Shell*
+
+1. *Businesslogik* (Domänenlogik) wird im Functional Core abgebildet \\
+   => mit unveränderbaren Datenstrukturen \\
+   => mit puren Funktionen
+
+2. *Infrastruktur-Code* in der Imperative Shell \\
+   => mit veränderbaren Datenstrukturen \\
+   => mit Funktionen, die Seiteneffekte ausführen
+
+* Funktionale Softwarearchitektur
+
+*Functional Core -- Imperative Shell*
+
+1. *Businesslogik* (Domänenlogik) wird im Functional Core abgebildet \\
+   => mit unveränderbaren Datenstrukturen \\
+   => mit puren Funktionen
+
+2. *Infrastruktur-Code* in der Imperative Shell \\
+   => mit veränderbaren Datenstrukturen \\
+   => mit Funktionen, die Seiteneffekte ausführen
+
+3. Die Imperative Shell benutzt den Functional Core, \\
+   aber der Functional Core weiß nichts von der Shell
+   
+* Funktionale Softwarearchitektur -- KOMMENTAR
+   
+   
 innerer kern imm gut testbar
 
 bestandcode von kunden, oder libraries die es für clojure nicht gibt (kafka
@@ -587,7 +623,7 @@ file:images/active-group.png
   - iSAQB FUNAR: Funktionale Softwarearchitektur
   - iSAQB FLEX: Microservices und Self-Contained Systems
 
-- https://funktionale-programmierung.de
+- Blog https://funktionale-programmierung.de
 
 * ?Event-Sourcing?
 
@@ -635,7 +671,7 @@ Theme:  doom-tomorrow-day
 - Präzedenz: In Clojure wird die Reihenfolge immer explizit durch die vorgegebene Syntax, keine Gedanken, klar erkennbar
 
 - Interaktiv:
-  - default-text-scale, damit in Emacs alles größer wird
+  - [X] default-text-scale, damit in Emacs alles größer wird
   - namespace in die repl laden
     - "reloaden"
     - (ns ..) erklären
