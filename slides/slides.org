@@ -11,6 +11,36 @@
 #+REVEAL_TITLE_SLIDE: %d
 #+REVEAL_TITLE_SLIDE_BACKGROUND: file:///home/kaan/active-group/vortraege/2022-09-15_Clojure und Java Hand in Hand/slides/title-slide.png
 
+* Clojure und Java – Hand in Hand!
+
+#+HTML: <div style="width:300px;display:inline-block">
+file:images/clojure.png
+#+HTML: </div>
+
+#+HTML: <div style="width:300px;display:inline-block">
+
+#+HTML: </div>
+
+#+HTML: <div style="max-width:250px;display:inline-block">
+file:images/java.png
+#+HTML: </div>
+
+* Clojure und Java – Hand in Hand!
+
+#+HTML: <div style="width:300px;display:inline-block">
+file:images/clojure.png
+#+HTML: </div>
+
+#+HTML: <div style="width:300px;display:inline-block">
+#+HTML: <center>
+file:images/hands-shaking.png
+#+HTML: </center>
+#+HTML: </div>
+
+#+HTML: <div style="max-width:250px;display:inline-block">
+file:images/java.png
+#+HTML: </div>
+
 
 * Clojure und Java – Hand in Hand!
 

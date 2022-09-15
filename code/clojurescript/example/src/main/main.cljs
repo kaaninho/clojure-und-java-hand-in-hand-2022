@@ -31,10 +31,10 @@
    style-1
 
    (dom/h2 style-2
-           "Gib bitte Deinen Namen und Dein Alter ein")
+           "Gib Deinen Namen und Dein Alter ein")
 
    (c/focus :name (labelled-input "Name" "string"))
-
+   
    (dom/br)
    (dom/br)
 
