@@ -188,3 +188,15 @@ falls ihr appetit bekommen habt, clojure zu machen,
 was kann ich damit anfangen, damit dass die interop so gut ist, bietet es sich an, graduell umzubauen
 kern funtkional, rand interop, rand größer werden lässt mit der zeit
 
+* länger für javaforum-nord
+
+- testing zeigen:
+  - geht natürlich von repl-driven-development über zu test
+    #+begin_src clojure
+    (def names #{"kaan" "franz" "erika"})
+
+    (filter #(> (count %) 4)
+            names)
+    #+end_src
+    wird zu funktion, dann names rüberkopoieren, test vervollständigen
+- buch filter beispiel von james trunk

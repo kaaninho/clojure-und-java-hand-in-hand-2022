@@ -8,8 +8,6 @@
 #+OPTIONS: num:nil toc:nil reveal-center:f reveal_slide_number:t
 #+MACRO: newline   src_emacs-lisp[:results raw]{"\n "}
 #+MACRO: TIKZ-IMG #+HEADER: :exports results :file $1 :imagemagick yes {{{newline}}} #+HEADER: :results raw {{{newline}}} #+HEADER: :headers '("\usepackage{tikz}") {{{newline}}} #+HEADER: :fit yes :imoutoptions -geometry $2 :iminoptions -density 600
-#+REVEAL_TITLE_SLIDE: %d
-#+REVEAL_TITLE_SLIDE_BACKGROUND: file:///home/kaan/active-group/vortraege/2022-09-15_Clojure und Java Hand in Hand/slides/title-slide.png
 
 * Clojure und Java – Hand in Hand!
 
@@ -608,6 +606,26 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 
 3. Die Imperative Shell benutzt den Functional Core, \\
    aber der Functional Core weiß nichts von der Shell
+
+* Statements
+
+* Statements
+
+\\
+
+#+HTML: <blockquote>
+Ne, unser Projekt ist in Java geschrieben, wechseln geht nicht
+#+HTML: </blockquote>
+
+* Statements
+
+* Statements
+
+\\
+
+#+HTML: <blockquote>
+Ein Clojure-Projekt wäre zu riskant, da gibt's doch kaum Entwickler:innen!
+#+HTML: </blockquote>
 
 * Wie gehts weiter?
 
