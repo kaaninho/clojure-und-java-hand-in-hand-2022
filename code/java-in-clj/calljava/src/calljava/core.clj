@@ -89,3 +89,10 @@
   (toString [_] (str "X-Koord: " x ", Y-Koord: " y "Z-Koord: " z)))
 
 (str (->Point3D 1 2 3))
+
+
+(defrecord Point3D [x y z]
+  Distance
+  (distanceToOrigin [this] 5.0))
+
+(.distanceToOrigin (->Point3D 1 2 3))
