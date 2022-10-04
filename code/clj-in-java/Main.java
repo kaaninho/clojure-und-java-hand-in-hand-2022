@@ -1,13 +1,15 @@
-import clj.stuff;
+import clj.analyze;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Hello World from Java!");
+        String text = "JAVAFORUMNORD: We are at JavaForumNord, how is it at the Javaforumnord so far?";
+        
+        String analyzedText = clj.analyze.analyzeString(text);
 
-        String transformResult = clj.stuff.transform("hello world");
+        System.out.println("\n\nThe most common word is: \n");
 
-        System.out.println(transformResult);
+        System.out.println(analyzedText);
     }
 }
