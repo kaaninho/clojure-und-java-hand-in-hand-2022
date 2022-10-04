@@ -112,8 +112,7 @@
        (remove common-words)
        (frequencies)
        (sort-by val)
-       (last)
-       (key)))
+       (str)))
 
 ;; `analyze-string` Java-konform und bekannt machen
 (def -analyzeString analyze-string)

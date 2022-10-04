@@ -4,9 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String text = "JAVAFORUMNORD: We are at JavaForumNord, how is it at the Javaforumnord so far?";
+        String text = "JAVAFORUMNORD: Clojure at the JavaForumNord, CLOJURE is a functional language.";
         
-        String analyzedText = clj.analyze.analyzeString(text);
+        String analyzedText = clj.analyze.analyzeString(text).toString();
 
         System.out.println("\n\nThe most common word is: \n");
 
