@@ -1,7 +1,7 @@
 (ns clj.core
   (:gen-class
    :name clj.analyze
-   :methods [#^{:static true} [analyzeString [String] String]])
+   :methods [#^{:static true} [analyzeString [String] java.util.HashMap]])
   
   (:require [clojure.string :as s]))
 
@@ -112,7 +112,9 @@
        (remove common-words)
        (frequencies)
        (sort-by val)
-       (str)))
+       (take-last 5)
+       (into {})
+       (java.util.HashMap.)))
 
 ;; `analyze-string` Java-konform und bekannt machen
 (def -analyzeString analyze-string)

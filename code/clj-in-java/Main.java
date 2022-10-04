@@ -8,7 +8,7 @@ public class Main {
         
         String analyzedText = clj.analyze.analyzeString(text).toString();
 
-        System.out.println("\n\nThe most common word is: \n");
+        System.out.println("\n\nThe 5 most common words are: \n");
 
         System.out.println(analyzedText);
     }
