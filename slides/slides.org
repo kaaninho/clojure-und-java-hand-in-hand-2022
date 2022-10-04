@@ -400,7 +400,9 @@ weitere Vorteile
 - keine versteckten Abhängigkeiten
 - Nebenläufigkeit einfacher und besser handhabbar
 
-=> *verbessert Architektur!*
+\\
+
+=> *Immutability verbessert die Architektur!*
 
 * Clojure -- Immutability
 
@@ -418,7 +420,7 @@ Effizienz?
 Effizienz?
 
 #+begin_src clojure
-["a" "b" "c" "d" "f" "g" "h"]
+(def xs ["a" "b" "c" "d" "f" "g" "h"])
 #+end_src
 
 * Clojure -- Immutability
@@ -426,7 +428,7 @@ Effizienz?
 Effizienz?
 
 #+begin_src clojure
-["a" "b" "c" "d" "f" "g" "h"]
+(def xs ["a" "b" "c" "d" "f" "g" "h"])
 #+end_src
 
 
@@ -443,7 +445,7 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 Effizienz?
 
 #+begin_src clojure
-["a" "b" "c" "d" "e" "f" "g" "h"]
+(def ys (insert-at 4 "e" xs)) ; ["a" "b" "c" "d" "e" "f" "g" "h"]
 #+end_src
 
 #+HTML: <div><div style="max-width:400px;padding-left:130px">
