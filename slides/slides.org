@@ -565,6 +565,13 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 
 *Clojure in Java*
 
+* Zusammenfassung
+
+- Clojure ist toll
+- Clojure-Java-Interop ist toll
+- Immutability ist toll
+- funktionale Programmierung ist toll
+
 * Funktionale Softwarearchitektur
 
 *Functional Core -- Imperative Shell*
