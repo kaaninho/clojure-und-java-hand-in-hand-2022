@@ -73,7 +73,7 @@
 
 
 ;; `analyze-string` Java-konform und bekannt machen
-;; (def -analyze analyze-string)
+;; (def -analyzeString analyze-string)
 
 
 
