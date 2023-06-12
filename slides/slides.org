@@ -638,15 +638,13 @@ Ein Clojure-Projekt wäre zu riskant, da gibt's doch kaum Entwickler:innen!
 
 * Wie gehts weiter?
 
-#+HTML: <div><div style="max-width:400px;padding-left:130px">
+#+HTML: <div><div style="max-width:400px;">
 file:images/active-group.png
 #+HTML: </div></div>
 
-
+- *Blog*: [[http:funktionale-programmierung.de][funktionale-programmierung.de]]
 - Wir geben Schulungen in:
-  - Einführung in die funktionale Programmierung
+  - Einführung in die *funktionale Programmierung*
   - iSAQB FOUNDATION: Grundausbildung Softwarearchitektur
-  - iSAQB FUNAR: Funktionale Softwarearchitektur
-  - iSAQB FLEX: Microservices und Self-Contained Systems
-
-- Blog https://funktionale-programmierung.de
+  - iSAQB FUNAR: *Funktionale Softwarearchitektur*
+  - iSAQB FLEX: Microservices und *Self-Contained Systems*
