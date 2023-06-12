@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String text = "JAVAFORUMNORD: Clojure at the JavaForumNord, CLOJURE is a functional language.";
+        String text = "Karlsruher Entwicklertag: Clojure at Karlsruher Entwicklertag, CLOJURE is a functional language. Clojure is also a Lisp.";
         
         String analyzedText = clj.analyze.analyzeString(text).toString();
 
