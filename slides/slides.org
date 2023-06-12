@@ -1,4 +1,4 @@
-#+title: Clojure und Java – Hand in Hand!
+#+title: Clojure und Java – Hand in Hand
 #+author: Kaan Sahin, Active Group GmbH
 #+REVEAL_PLUGINS: (notes)
 #+REVEAL_THEME: active
@@ -9,7 +9,7 @@
 #+MACRO: newline   src_emacs-lisp[:results raw]{"\n "}
 #+MACRO: TIKZ-IMG #+HEADER: :exports results :file $1 :imagemagick yes {{{newline}}} #+HEADER: :results raw {{{newline}}} #+HEADER: :headers '("\usepackage{tikz}") {{{newline}}} #+HEADER: :fit yes :imoutoptions -geometry $2 :iminoptions -density 600
 
-* Clojure und Java – Hand in Hand!
+* Clojure und Java – Hand in Hand
 
 #+HTML: <div style="width:300px;display:inline-block">
 file:images/clojure.png
@@ -23,7 +23,7 @@ file:images/clojure.png
 file:images/java.png
 #+HTML: </div>
 
-* Clojure und Java – Hand in Hand!
+* Clojure und Java – Hand in Hand
 
 #+HTML: <div style="width:300px;display:inline-block">
 file:images/clojure.png
@@ -40,7 +40,7 @@ file:images/java.png
 #+HTML: </div>
 
 
-* Clojure und Java – Hand in Hand!
+* Clojure und Java – Hand in Hand
 
 - Clojure 101
 - Interop Java und Clojure
