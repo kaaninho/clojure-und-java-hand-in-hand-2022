@@ -7,6 +7,8 @@
 
 
 
+(defn words [string]
+  (re-seq #"[\w|´]+" string))
 
 
 
@@ -44,10 +46,38 @@
 
 
 
+
+
+
+
+
+
+
+
+
 (def common-words
   #{"and" "of" "the" "a" "i" "was" "in" "his" "had" "with" "glad" "them"
     "on" "am" "their" "you" "that" "´" "it" "is" "there" "my" "son" "so"
     "he" "not" "than" "have" "said" "but" "passed" "has" "at" "your" "as"})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -91,10 +121,35 @@
 
 ;;; ==== SOLUTION ====
 
-;; (def book (slurp "book.txt"))
+(def book (slurp "book.txt"))
+
+(count book)
 
 (defn words [string]
   (re-seq #"[\w|´]+" string))
+
+(count (words book))
+
+(frequencies (words book))
+
+
+;;; Durchgang:
+;;  !!!Starte mit 6. Zeile!!!
+;;; Vorgehensweise:
+;; - slurp und count
+;; - words und frequencies
+;; - lower-case, hier bemerken, dass es unübersichtlich wird
+;; - umschreiben auf ->>, dann merken, dass common-words benötigt wird
+;; - remove zeigen
+;; - menge als funktion zeigen
+;; - sort und dann sort-by mit val
+;; - take-last
+;; - reverse
+;; Dann zu einer Funktion basteln
+;; - Docstring
+;; - into {} und java.util.HashMap. damit wir es exportieren können
+;; - analyze-string Java-konform und bekannt machen (s. o., Typangaben)
+;; in Terminal java-Aufruf zeigen
 
 (def common-words
   #{"and" "of" "the" "a" "i" "was" "in" "his" "had" "with" "glad" "them"
@@ -104,7 +159,7 @@
 (defn analyze-string
   "Analyzes a given string.
 
-  Returns the 5 most used words with their count of appearance."
+  Returns the 5 most used words with their count of appearance as a map."
   [string]
   (->> string
        (words)
@@ -113,6 +168,7 @@
        (frequencies)
        (sort-by val)
        (take-last 5)
+       (reverse)
        (into {})
        (java.util.HashMap.)))
 
@@ -164,3 +220,9 @@ Gandalf laughed long and merrily. ‘The trees?’ he said. ‘Nay, I
 see the wood as plainly as do you. But that is no deed of mine. It is
 a thing beyond the counsel of the wise. Better than my design, and
 better even than my hope the event has proved.")
+
+
+
+
+;; Java Aufruf
+;; java -cp ".:clj/target/uberjar/clj-0.1.0-SNAPSHOT-standalone.jar" Main.java
