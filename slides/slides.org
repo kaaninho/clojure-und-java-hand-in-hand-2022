@@ -48,7 +48,7 @@ file:images/java.png
 
 * Clojure
 
-- Lisp-Dialekt
+- Lisp-Dialekt, dynamisch getypt
 - kompiliert zu JVM-Bytecode
 - unveränderliche Daten
 - ermutigt funktionale Programmierung
@@ -57,7 +57,7 @@ file:images/java.png
 
 * Clojure
 
-- *Lisp-Dialekt*
+- *Lisp-Dialekt*, dynamisch getypt
 - kompiliert zu JVM-Bytecode
 - unveränderliche Daten
 - ermutigt funktionale Programmierung
@@ -288,7 +288,7 @@ repl> (umfang 4)
 
 * Clojure
 
-- Lisp-Dialekt
+- Lisp-Dialekt, dynamisch getypt
 - kompiliert zu JVM-Bytecode
 - *unveränderliche Daten*
 - ermutigt funktionale Programmierung
@@ -458,7 +458,7 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 
 * Clojure
 
-- Lisp-Dialekt
+- Lisp-Dialekt, dynamisch getypt
 - kompiliert zu JVM-Bytecode
 - unveränderliche Daten
 - *ermutigt funktionale Programmierung*
@@ -546,7 +546,7 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 
 * Clojure
 
-- Lisp-Dialekt
+- Lisp-Dialekt, dynamisch getypt
 - kompiliert zu JVM-Bytecode
 - unveränderliche Daten
 - ermutigt funktionale Programmierung
