@@ -586,32 +586,32 @@ VineetKumar at English Wikipedia. - Transferred from en.wikipedia to Commons by 
 *Functional Core -- Imperative Shell*
 
 1. *Businesslogik* (Domänenlogik) wird im Functional Core abgebildet \\
-   => mit unveränderbaren Datenstrukturen \\
-   => mit puren Funktionen
+   ↝ mit unveränderbaren Datenstrukturen \\
+   ↝ mit puren Funktionen
 
 * Funktionale Softwarearchitektur
 
 *Functional Core -- Imperative Shell*
 
 1. *Businesslogik* (Domänenlogik) wird im Functional Core abgebildet \\
-   => mit unveränderbaren Datenstrukturen \\
-   => mit puren Funktionen
+   ↝ mit unveränderbaren Datenstrukturen \\
+   ↝ mit puren Funktionen
 
 2. *Infrastruktur-Code* in der Imperative Shell \\
-   => mit veränderbaren Datenstrukturen \\
-   => mit Funktionen, die Seiteneffekte ausführen
+   ↝ mit veränderbaren Datenstrukturen \\
+   ↝ mit Funktionen, die Seiteneffekte ausführen
 
 * Funktionale Softwarearchitektur
 
 *Functional Core -- Imperative Shell*
 
 1. *Businesslogik* (Domänenlogik) wird im Functional Core abgebildet \\
-   => mit unveränderbaren Datenstrukturen \\
-   => mit puren Funktionen
+   ↝ mit unveränderbaren Datenstrukturen \\
+   ↝ mit puren Funktionen
 
 2. *Infrastruktur-Code* in der Imperative Shell \\
-   => mit veränderbaren Datenstrukturen \\
-   => mit Funktionen, die Seiteneffekte ausführen
+   ↝ mit veränderbaren Datenstrukturen \\
+   ↝ mit Funktionen, die Seiteneffekte ausführen
 
 3. Die Imperative Shell benutzt den Functional Core, \\
    aber der Functional Core weiß nichts von der Shell
