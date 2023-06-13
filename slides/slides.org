@@ -648,3 +648,13 @@ file:images/active-group.png
   - iSAQB FOUNDATION: Grundausbildung Softwarearchitektur
   - iSAQB FUNAR: *Funktionale Softwarearchitektur*
   - iSAQB FLEX: Microservices und *Self-Contained Systems*
+
+* Wie gehts weiter?
+
+\\
+
+- heute
+  - Markus Schlegel: Modellbasiertes UI-Design
+  - Mike Sperber: Erlang/Elixir – Systeme, die laufen und laufen und laufen
+- morgen:
+  - Markus Schlegel: Wie man mithilfe hoher Kopplung Softwareprojekte sabotiert
